@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Siswa::factory(25)->create();
         $this->call(UserSeeder::class);
     }
 }
