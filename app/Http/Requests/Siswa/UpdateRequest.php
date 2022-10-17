@@ -36,9 +36,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255'],
-            'umur' => ['required','numeric']
+            'nama' => ['nullable','string','max:255'],
+            'kelamin' => ['nullable','string','max:255'],
+            'umur' => ['nullable','numeric']
         ];
     }
 
