@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Home Route Resource
+Route::resource('/', Api\HomeController::class, ['names' => 'home']);
+Route::resource('/siswa', Api\SiswaController::class);
+
+// Fallback Response
+Route::fallback([Api\FallbackController::class, 'index']);
