@@ -14,7 +14,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Contracts\EloquentInterface', 'App\Repositories\EloquentRepository');
-        $this->app->bind('App\Contracts\Models\UserInterdace', 'App\Repositories\Models\UserRepository');
+        $this->app->bind('App\Contracts\Models\UserInterface', 'App\Repositories\Models\UserRepository');
+        $this->app->bind('App\Contracts\Models\SiswaInterface', 'App\Repositories\Models\SiswaRepository');
     }
 
     /**

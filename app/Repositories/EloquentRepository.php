@@ -6,7 +6,7 @@ use App\Contracts\EloquentInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 
-class EloquentRepository implements EloquentInterface 
+class EloquentRepository implements EloquentInterface
 {
     /**
      * @var Model

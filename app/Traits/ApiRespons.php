@@ -71,7 +71,7 @@ trait ApiRespons
             static::$formatter['metadata']['count_data'] = isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0;
 
             static::$formatter['meta']['version'] = static::$version;
-            static::$formatter['meta']['author'] = config('meta.author');
+            static::$formatter['meta']['author'] = config('app.author');
             static::$formatter['meta']['host'] = config('app.url');
             static::$formatter['meta']['type'] = static::$type;
             static::$formatter['meta']['date'] = date('d-m-Y H:i:s');
