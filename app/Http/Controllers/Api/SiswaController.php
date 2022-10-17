@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Services\Api\SiswaService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Siswa\StoreRequest;
+use App\Http\Requests\Siswa\UpdateRequest;
 
 class SiswaController extends Controller
 {
@@ -12,19 +14,9 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SiswaService $service)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $service->index();
     }
 
     /**
@@ -33,9 +25,9 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request, SiswaService $service)
     {
-        //
+        return $service->store($request->validated());
     }
 
     /**
@@ -44,20 +36,9 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SiswaService $service, $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $service->show($id);
     }
 
     /**
@@ -67,9 +48,9 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, SiswaService $service, $id)
     {
-        //
+        return $service->update($request->validated(), $id);
     }
 
     /**
@@ -78,8 +59,8 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SiswaService $service, $id)
     {
-        //
+        return $service->destroy($id);
     }
 }
