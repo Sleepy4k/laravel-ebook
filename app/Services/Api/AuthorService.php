@@ -4,25 +4,25 @@ namespace App\Services\Api;
 
 use App\Contracts\Models;
 use App\Traits\ApiRespons;
-use App\Http\Resources\SiswaResource;
+use App\Http\Resources\AuthorResource;
 
-class SiswaService
+class AuthorService
 {
     use ApiRespons;
 
     /**
-     * @var siswaInterface
+     * @var authorInterface
      */
-    private $siswaInterface;
+    private $authorInterface;
 
     /**
      * Account service constructor.
      * 
-     * @param App\Contracts\Models\SiswaInterface $siswaInterface
+     * @param App\Contracts\Models\AuthorInterface $authorInterface
      */
-    public function __construct(Models\SiswaInterface $siswaInterface)
+    public function __construct(Models\AuthorInterface $authorInterface)
     {
-        $this->siswaInterface = $siswaInterface;
+        $this->authorInterface = $authorInterface;
     }
 
     /**
@@ -31,12 +31,12 @@ class SiswaService
     public function index()
     {
         try {
-            $students = $this->siswaInterface->all();
+            $authors = $this->authorInterface->all();
 
-            if (count($students) > 0) {
+            if (count($authors) > 0) {
                 return $this->createResponse(200, 'Data berhasil diterima',
                     [
-                        'data' => SiswaResource::collection($students)
+                        'data' => AuthorResource::collection($authors)
                     ],
                     [
                         route('siswa.index')
@@ -72,14 +72,14 @@ class SiswaService
     public function store($request)
     {
         try {
-            $student = $this->siswaInterface->create($request);
+            $author = $this->authorInterface->create($request);
 
             return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'data' => new SiswaResource($student)
+                    'data' => new AuthorResource($author)
                 ],
                 [
-                    route('siswa.store')
+                    route('author.store')
                 ]
             );
         } catch (\Throwable $th) {
@@ -88,7 +88,7 @@ class SiswaService
                     'error' => $th->getMessage()
                 ],
                 [
-                    route('siswa.store')
+                    route('author.store')
                 ]
             );
         }
@@ -102,14 +102,14 @@ class SiswaService
     public function show($id)
     {
         try {
-            $student = $this->siswaInterface->findById($id);
+            $author = $this->authorInterface->findById($id);
 
             return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'data' => new SiswaResource($student)
+                    'data' => new AuthorResource($author)
                 ],
                 [
-                    route('siswa.show', $id)
+                    route('author.show', $id)
                 ]
             );
         } catch (\Throwable $th) {
@@ -118,7 +118,7 @@ class SiswaService
                     'error' => $th->getMessage()
                 ],
                 [
-                    route('siswa.show', $id)
+                    route('author.show', $id)
                 ]
             );
         }
@@ -133,17 +133,17 @@ class SiswaService
     public function update($request, $id)
     {
         try {
-            $this->siswaInterface->update(intval($id), $request);
+            $this->authorInterface->update(intval($id), $request);
 
             if (!empty($request)) {
-                $student = $this->siswaInterface->findById($id);
+                $author = $this->authorInterface->findById($id);
 
                 return $this->createResponse(200, 'Data berhasil diterima',
                     [
-                        'data' => new SiswaResource($student)
+                        'data' => new AuthorResource($author)
                     ],
                     [
-                        route('siswa.update', $id)
+                        route('author.update', $id)
                     ]
                 );
             } else {
@@ -152,7 +152,7 @@ class SiswaService
                         'data' => 'Tidak ada data yang diubah'
                     ],
                     [
-                        route('siswa.update', $id)
+                        route('author.update', $id)
                     ]
                 );
             }
@@ -162,7 +162,7 @@ class SiswaService
                     'error' => $th->getMessage()
                 ],
                 [
-                    route('siswa.update', $id)
+                    route('author.update', $id)
                 ]
             );
         }
@@ -176,15 +176,15 @@ class SiswaService
     public function destroy($id)
     {
         try {
-            $this->siswaInterface->deleteById($id);
-            $students = $this->siswaInterface->all();
+            $this->authorInterface->deleteById($id);
+            $authors = $this->authorInterface->all();
 
             return $this->createResponse(200, 'Data berhasil dihapus',
             [
-                'data' => SiswaResource::collection($students)
+                'data' => AuthorResource::collection($authors)
             ],
             [
-                route('siswa.destroy', $id)
+                route('author.destroy', $id)
             ]
         );
         } catch (\Throwable $th) {
@@ -193,7 +193,7 @@ class SiswaService
                     'error' => $th->getMessage()
                 ],
                 [
-                    route('siswa.destroy', $id)
+                    route('author.destroy', $id)
                 ]
             );
         }
