@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Index Route
+Route::any('/', function() {
+    return response()->json([
+        "status" => Response::HTTP_OK,
+        "message" => "API working fine"
+    ]);
+});
 
 // Home Route Resource
 Route::resource('/me', Api\HomeController::class, ['names' => 'home']);
