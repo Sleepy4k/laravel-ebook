@@ -16,6 +16,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\EloquentInterface', 'App\Repositories\EloquentRepository');
         $this->app->bind('App\Contracts\Models\UserInterface', 'App\Repositories\Models\UserRepository');
         $this->app->bind('App\Contracts\Models\SiswaInterface', 'App\Repositories\Models\SiswaRepository');
+        $this->app->bind('App\Contracts\Models\AuthorInterface', 'App\Repositories\Models\AuthorRepository');
     }
 
     /**
