@@ -2,6 +2,7 @@
 
 namespace App\Services\Api;
 
+use Carbon\Carbon;
 use App\Contracts\Models;
 use App\Traits\ApiRespons;
 use App\Http\Resources\AuthorResource;
@@ -72,6 +73,8 @@ class AuthorService
     public function store($request)
     {
         try {
+            $request['tanggal_lahir'] = Carbon::parse($request['tanggal_lahir'])->format('Y-m-d');
+
             $author = $this->authorInterface->create($request);
 
             return $this->createResponse(200, 'Data berhasil diterima',
