@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home Route Resource
-Route::resource('/', Api\HomeController::class, ['names' => 'home']);
+Route::resource('/me', Api\HomeController::class, ['names' => 'home']);
 Route::resource('/siswa', Api\SiswaController::class);
+Route::resource('/author', Api\AuthorController::class);
 
 // Fallback Response
 Route::fallback([Api\FallbackController::class, 'index']);
