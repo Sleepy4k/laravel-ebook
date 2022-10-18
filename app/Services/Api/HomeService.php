@@ -33,7 +33,7 @@ class HomeService
         try {
             return $this->createResponse(200, 'Data berhasil diterima',
             [
-                'data' => HomeResource::collection($this->userInterface->all())
+                'data' => new HomeResource($this->userInterface->findById(1))
             ],
             [
                 route('home.index')
