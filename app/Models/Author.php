@@ -93,7 +93,9 @@ class Author extends Model
      *
      * @var array
      */
-    protected $dates = [];
+    protected $dates = [
+        'tanggal_lahir'
+    ];
     
     /**
      * The attributes that should be cast.
