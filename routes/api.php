@@ -21,12 +21,13 @@ Route::any('/', function() {
         "status" => Response::HTTP_OK,
         "message" => "API working fine"
     ]);
-});
+})->name('landing');
 
 // Home Route Resource
-Route::resource('/me', Api\HomeController::class, ['names' => 'home']);
-Route::resource('/siswa', Api\SiswaController::class);
-Route::resource('/author', Api\AuthorController::class);
+Route::resource('/me', Api\HomeController::class, ['only' => ['index']]);
+Route::resource('/siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
+Route::resource('/author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
+Route::resource('/book', Api\BookController::class, ['except' => ['create', 'edit']]);
 
 // Fallback Response
-Route::fallback([Api\FallbackController::class, 'index']);
+Route::fallback([Api\FallbackController::class, 'index'])->name('fallback');
