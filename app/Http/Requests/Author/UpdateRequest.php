@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Author;
 
+use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -37,10 +39,10 @@ class UpdateRequest extends FormRequest
     {
         return [
             'nama' => ['nullable', 'string', 'max:255'],
-            'tanggal_lahir' => ['nullable'],
+            'tanggal_lahir' => ['nullable', 'date_format:d-m-Y'],
             'tempat_lahir' => ['nullable', 'string', 'max:255'],
-            'kelamin' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'max:255'],
+            'kelamin' => ['nullable', 'string', 'max:255', Rule::in(GenderEnum::$gender)],
+            'email' => ['nullable', 'string', 'max:255', 'email:dns', 'unique:authors,email'],
             'nomor_hp' => ['nullable', 'string', 'max:255']
         ];
     }

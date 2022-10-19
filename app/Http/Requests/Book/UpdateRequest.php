@@ -40,7 +40,7 @@ class UpdateRequest extends FormRequest
             'deskripsi' => ['nullable', 'string'],
             'author' => ['nullable', 'numeric'],
             'penerbit' => ['nullable', 'string', 'max:255'],
-            'tanggal_terbit' => ['nullable']
+            'tanggal_terbit' => ['nullable', 'date_format:d-m-Y']
         ];
     }
 

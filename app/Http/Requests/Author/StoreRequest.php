@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Author;
 
+use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -37,10 +39,10 @@ class StoreRequest extends FormRequest
     {
         return [
             'nama' => ['required', 'string', 'max:255'],
-            'tanggal_lahir' => ['required'],
+            'tanggal_lahir' => ['required', 'date_format:d-m-Y'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
-            'kelamin' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
+            'kelamin' => ['required', 'string', 'max:255', Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string', 'max:255', 'email:dns', 'unique:authors,email'],
             'nomor_hp' => ['required', 'string', 'max:255']
         ];
     }
