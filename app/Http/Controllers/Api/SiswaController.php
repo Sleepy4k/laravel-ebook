@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Traits\ApiRespons;
 use App\Services\Api\SiswaService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Siswa\StoreRequest;
@@ -9,6 +10,25 @@ use App\Http\Requests\Siswa\UpdateRequest;
 
 class SiswaController extends Controller
 {
+    use ApiRespons;
+
+    /**
+     * Handler try catch error.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function catchError($error, $route)
+    {
+        return $this->createResponse(500, 'Server Error',
+            [
+                'error' => $error->getMessage()
+            ],
+            [
+                $route
+            ]
+        );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +36,11 @@ class SiswaController extends Controller
      */
     public function index(SiswaService $service)
     {
-        return $service->index();
+        try {
+            return $service->index();
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('siswa.index'));
+        }
     }
 
     /**
@@ -27,7 +51,11 @@ class SiswaController extends Controller
      */
     public function store(StoreRequest $request, SiswaService $service)
     {
-        return $service->store($request->validated());
+        try {
+            return $service->store($request->validated());
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('siswa.store'));
+        }
     }
 
     /**
@@ -38,7 +66,11 @@ class SiswaController extends Controller
      */
     public function show(SiswaService $service, $id)
     {
-        return $service->show($id);
+        try {
+            return $service->show($id);
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('siswa.show', $id));
+        }
     }
 
     /**
@@ -50,7 +82,11 @@ class SiswaController extends Controller
      */
     public function update(UpdateRequest $request, SiswaService $service, $id)
     {
-        return $service->update($request->validated(), $id);
+        try {
+            return $service->update($request->validated(), $id);
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('siswa.update', $id));
+        }
     }
 
     /**
@@ -61,6 +97,10 @@ class SiswaController extends Controller
      */
     public function destroy(SiswaService $service, $id)
     {
-        return $service->destroy($id);
+        try {
+            return $service->destroy($id);
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('siswa.destroy', $id));
+        }
     }
 }

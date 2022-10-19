@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Traits\ApiRespons;
-use App\Services\Api\AuthorService;
+use App\Services\Api\BookService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Author\StoreRequest;
-use App\Http\Requests\Author\UpdateRequest;
+use App\Http\Requests\Book\StoreRequest;
+use App\Http\Requests\Book\UpdateRequest;
 
-class AuthorController extends Controller
+class BookController extends Controller
 {
     use ApiRespons;
 
@@ -34,12 +34,12 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AuthorService $service)
+    public function index(BookService $service)
     {
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.index'));
+            return $this->catchError($th, route('book.store'));
         }
     }
 
@@ -49,12 +49,12 @@ class AuthorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, AuthorService $service)
+    public function store(StoreRequest $request, BookService $service)
     {
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.store'));
+            return $this->catchError($th, route('book.index'));
         }
     }
 
@@ -64,12 +64,12 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AuthorService $service, $id)
+    public function show(BookService $service, $id)
     {
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.show', $id));
+            return $this->catchError($th, route('book.show', $id));
         }
     }
 
@@ -80,12 +80,12 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, AuthorService $service, $id)
+    public function update(UpdateRequest $request, BookService $service, $id)
     {
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.update', $id));
+            return $this->catchError($th, route('book.update', $id));
         }
     }
 
@@ -95,12 +95,12 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AuthorService $service, $id)
+    public function destroy(BookService $service, $id)
     {
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.destroy', $id));
+            return $this->catchError($th, route('book.destroy', $id));
         }
     }
 }
