@@ -3,14 +3,10 @@
 namespace App\Exceptions;
 
 use Throwable;
-use App\Traits\ApiRespons;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
-    use ApiRespons;
-
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -50,23 +46,5 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
-    }
-    
-    /**
-     * Handle unauthenticated user.
-     *
-     * @return void
-     */
-    protected function unauthenticated($request, AuthenticationException $exception)
-    {
-        return $request->expectsJson()
-            ? $this->createResponse(401, 'Unauthenticated Access',
-            [
-                'error' => $exception->getMessage()
-            ],
-            [
-                $request->url()
-            ])
-            : redirect()->guest(route('landing'));
     }
 }
