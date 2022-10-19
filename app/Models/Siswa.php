@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     /**
      * The table associated with created data.
@@ -101,4 +103,19 @@ class Siswa extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+    
+    /**
+     * The spatie log that setting log option.
+     *
+     * @var bool
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                            ->logOnly(['nama', 'kelamin', 'umur'])
+                            ->logOnlyDirty()
+                            ->useLogName('Siswa')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model Siswa successfully {$eventName}")
+                            ->dontSubmitEmptyLogs();
+    }
 }

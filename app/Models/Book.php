@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
     
     /**
      * The table associated with created data.
@@ -101,4 +103,19 @@ class Book extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+    
+    /**
+     * The spatie log that setting log option.
+     *
+     * @var bool
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                            ->logOnly(['judul', 'deskripsi', 'author', 'penerbit', 'tanggal_terbit'])
+                            ->logOnlyDirty()
+                            ->useLogName('Book')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model Book successfully {$eventName}")
+                            ->dontSubmitEmptyLogs();
+    }
 }
