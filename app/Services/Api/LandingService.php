@@ -36,7 +36,7 @@ class LandingService
                 'data' => LandingResource::collection($this->getRoutes())
             ],
             [
-                route('landing.index')
+                route('api.landing.index')
             ]
         );
     }

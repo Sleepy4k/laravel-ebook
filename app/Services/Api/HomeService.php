@@ -35,7 +35,7 @@ class HomeService
                 'data' => new HomeResource($this->userInterface->findById(1))
             ],
             [
-                route('me.index')
+                route('api.me.index')
             ]
         );
     }
