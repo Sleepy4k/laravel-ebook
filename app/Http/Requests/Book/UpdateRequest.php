@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Author;
+namespace App\Http\Requests\Book;
 
 use App\Traits\ApiRespons;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,12 +36,11 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable', 'string', 'max:255'],
-            'tanggal_lahir' => ['nullable'],
-            'tempat_lahir' => ['nullable', 'string', 'max:255'],
-            'kelamin' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'max:255'],
-            'nomor_hp' => ['nullable', 'string', 'max:255']
+            'judul' => ['nullable', 'string', 'max:255', 'unique:books,judul'],
+            'deskripsi' => ['nullable', 'string'],
+            'author' => ['nullable', 'numeric'],
+            'penerbit' => ['nullable', 'string', 'max:255'],
+            'tanggal_terbit' => ['nullable']
         ];
     }
 
@@ -94,7 +93,7 @@ class UpdateRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('author.index')
+                    route('book.index')
                 ]
             )
         );

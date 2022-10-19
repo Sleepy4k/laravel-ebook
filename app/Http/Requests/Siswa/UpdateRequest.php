@@ -91,7 +91,7 @@ class UpdateRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('home.index')
+                    route('siswa.index')
                 ]
             )
         );
