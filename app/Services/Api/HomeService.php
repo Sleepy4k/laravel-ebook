@@ -30,24 +30,13 @@ class HomeService
      */
     public function index()
     {
-        try {
-            return $this->createResponse(200, 'Data berhasil diterima',
+        return $this->createResponse(200, 'Data berhasil diterima',
             [
                 'data' => new HomeResource($this->userInterface->findById(1))
             ],
             [
-                route('home.index')
+                route('me.index')
             ]
         );
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $th->getMessage()
-                ],
-                [
-                    route('livestock.index')
-                ]
-            );
-        }
     }
 }

@@ -4,25 +4,25 @@ namespace App\Services\Api;
 
 use App\Contracts\Models;
 use App\Traits\ApiRespons;
-use App\Http\Resources\SiswaResource;
+use App\Http\Resources\BookResource;
 
-class SiswaService
+class BookService
 {
     use ApiRespons;
 
     /**
-     * @var siswaInterface
+     * @var bookInterface
      */
-    private $siswaInterface;
+    private $bookInterface;
 
     /**
      * Account service constructor.
      * 
-     * @param App\Contracts\Models\SiswaInterface $siswaInterface
+     * @param App\Contracts\Models\BookInterface $bookInterface
      */
-    public function __construct(Models\SiswaInterface $siswaInterface)
+    public function __construct(Models\BookInterface $bookInterface)
     {
-        $this->siswaInterface = $siswaInterface;
+        $this->bookInterface = $bookInterface;
     }
 
     /**
@@ -30,15 +30,15 @@ class SiswaService
      */
     public function index()
     {
-        $students = $this->siswaInterface->all();
+        $books = $this->bookInterface->all();
 
-        if (count($students) > 0) {
+        if (count($books) > 0) {
             return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'data' => SiswaResource::collection($students)
+                    'data' => BookResource::collection($books)
                 ],
                 [
-                    route('siswa.index')
+                    route('book.index')
                 ]
             );
         } else {
@@ -47,7 +47,7 @@ class SiswaService
                     'data' => 'Tidak ada data yang tersedia'
                 ],
                 [
-                    route('siswa.index')
+                    route('book.index')
                 ]
             );
         }
@@ -60,14 +60,14 @@ class SiswaService
      */
     public function store($request)
     {
-        $student = $this->siswaInterface->create($request);
+        $book = $this->bookInterface->create($request);
 
         return $this->createResponse(200, 'Data berhasil diterima',
             [
-                'data' => new SiswaResource($student)
+                'data' => new BookResource($book)
             ],
             [
-                route('siswa.store')
+                route('book.store')
             ]
         );
     }
@@ -79,14 +79,14 @@ class SiswaService
      */
     public function show($id)
     {
-        $student = $this->siswaInterface->findById($id);
+        $book = $this->bookInterface->findById($id);
 
         return $this->createResponse(200, 'Data berhasil diterima',
             [
-                'data' => new SiswaResource($student)
+                'data' => new BookResource($book)
             ],
             [
-                route('siswa.show', $id)
+                route('book.show', $id)
             ]
         );
     }
@@ -99,17 +99,17 @@ class SiswaService
      */
     public function update($request, $id)
     {
-        $this->siswaInterface->update(intval($id), $request);
+        $this->bookInterface->update(intval($id), $request);
 
         if (!empty($request)) {
-            $student = $this->siswaInterface->findById($id);
+            $book = $this->bookInterface->findById($id);
 
             return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'data' => new SiswaResource($student)
+                    'data' => new BookResource($book)
                 ],
                 [
-                    route('siswa.update', $id)
+                    route('book.update', $id)
                 ]
             );
         } else {
@@ -118,7 +118,7 @@ class SiswaService
                     'data' => 'Tidak ada data yang diubah'
                 ],
                 [
-                    route('siswa.update', $id)
+                    route('book.update', $id)
                 ]
             );
         }
@@ -131,15 +131,15 @@ class SiswaService
      */
     public function destroy($id)
     {
-        $this->siswaInterface->deleteById($id);
-        $students = $this->siswaInterface->all();
+        $this->bookInterface->deleteById($id);
+        $books = $this->bookInterface->all();
 
         return $this->createResponse(200, 'Data berhasil dihapus',
             [
-                'data' => SiswaResource::collection($students)
+                'data' => BookResource::collection($books)
             ],
             [
-                route('siswa.destroy', $id)
+                route('book.destroy', $id)
             ]
         );
     }

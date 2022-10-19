@@ -15,10 +15,10 @@ class HomeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "nama" => $this->nama,
-            "umur" => $this->umur,
-            "tinggi" => $this->tinggi,
-            "sayang" => $this->sayang
+            "Nama" => $this->nama,
+            "Umur" => $this->umur,
+            "Tinggi" => $this->tinggi,
+            "Sayang" => $this->sayang
         ];
     }
 }

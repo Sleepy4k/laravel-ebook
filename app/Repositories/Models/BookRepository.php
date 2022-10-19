@@ -3,12 +3,12 @@
 namespace App\Repositories\Models;
 
 use Carbon\Carbon;
-use App\Models\Author;
+use App\Models\Book;
+use App\Contracts\Models\BookInterface;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\EloquentRepository;
-use App\Contracts\Models\AuthorInterface;
 
-class AuthorRepository extends EloquentRepository implements AuthorInterface
+class BookRepository extends EloquentRepository implements BookInterface
 {
     /**
      * @var Model
@@ -20,7 +20,7 @@ class AuthorRepository extends EloquentRepository implements AuthorInterface
      * 
      * @param Model $model
      */
-    public function __construct(Author $model)
+    public function __construct(Book $model)
     {
         $this->model = $model;
     }
@@ -33,8 +33,8 @@ class AuthorRepository extends EloquentRepository implements AuthorInterface
      */
     public function create(array $payload): ?Model
     {
-        if (array_key_exists('tanggal_lahir', $payload)) {
-            $payload['tanggal_lahir'] = Carbon::parse($payload['tanggal_lahir'])->format('Y-m-d');
+        if (array_key_exists('tanggal_terbit', $payload)) {
+            $payload['tanggal_terbit'] = Carbon::parse($payload['tanggal_terbit'])->format('Y-m-d');
         }
 
         $model = $this->model->create($payload);
@@ -51,8 +51,8 @@ class AuthorRepository extends EloquentRepository implements AuthorInterface
      */
     public function update(int $modelId, array $payload): bool
     {
-        if (array_key_exists('tanggal_lahir', $payload)) {
-            $payload['tanggal_lahir'] = Carbon::parse($payload['tanggal_lahir'])->format('Y-m-d');
+        if (array_key_exists('tanggal_terbit', $payload)) {
+            $payload['tanggal_terbit'] = Carbon::parse($payload['tanggal_terbit'])->format('Y-m-d');
         }
         
         $model = $this->findById($modelId);

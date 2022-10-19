@@ -15,10 +15,10 @@ class SiswaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
-            "nama" => $this->nama,
-            "jenis_kelamin" => $this->kelamin,
-            "umur" => $this->umur . ' Tahun'
+            "ID" => $this->id,
+            "Nama" => $this->nama,
+            "Jenis Kelamin" => $this->kelamin,
+            "Umur" => $this->umur . ' Tahun'
         ];
     }
 }
