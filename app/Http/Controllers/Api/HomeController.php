@@ -37,7 +37,7 @@ class HomeController extends Controller
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('me.index'));
+            return $this->catchError($th, route('api.me.index'));
         }
     }
 }

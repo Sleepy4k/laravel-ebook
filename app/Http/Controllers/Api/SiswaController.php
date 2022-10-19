@@ -39,7 +39,7 @@ class SiswaController extends Controller
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('siswa.index'));
+            return $this->catchError($th, route('api.siswa.index'));
         }
     }
 
@@ -54,7 +54,7 @@ class SiswaController extends Controller
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('siswa.store'));
+            return $this->catchError($th, route('api.siswa.store'));
         }
     }
 
@@ -69,7 +69,7 @@ class SiswaController extends Controller
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('siswa.show', $id));
+            return $this->catchError($th, route('api.siswa.show', $id));
         }
     }
 
@@ -85,7 +85,7 @@ class SiswaController extends Controller
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('siswa.update', $id));
+            return $this->catchError($th, route('api.siswa.update', $id));
         }
     }
 
@@ -100,7 +100,7 @@ class SiswaController extends Controller
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('siswa.destroy', $id));
+            return $this->catchError($th, route('api.siswa.destroy', $id));
         }
     }
 }
