@@ -38,7 +38,7 @@ class SiswaService
                     'data' => SiswaResource::collection($students)
                 ],
                 [
-                    route('siswa.index')
+                    route('api.siswa.index')
                 ]
             );
         } else {
@@ -47,7 +47,7 @@ class SiswaService
                     'data' => 'Tidak ada data yang tersedia'
                 ],
                 [
-                    route('siswa.index')
+                    route('api.siswa.index')
                 ]
             );
         }
@@ -67,7 +67,7 @@ class SiswaService
                 'data' => new SiswaResource($student)
             ],
             [
-                route('siswa.store')
+                route('api.siswa.store')
             ]
         );
     }
@@ -86,7 +86,7 @@ class SiswaService
                 'data' => new SiswaResource($student)
             ],
             [
-                route('siswa.show', $id)
+                route('api.siswa.show', $id)
             ]
         );
     }
@@ -109,7 +109,7 @@ class SiswaService
                     'data' => new SiswaResource($student)
                 ],
                 [
-                    route('siswa.update', $id)
+                    route('api.siswa.update', $id)
                 ]
             );
         } else {
@@ -118,7 +118,7 @@ class SiswaService
                     'data' => 'Tidak ada data yang diubah'
                 ],
                 [
-                    route('siswa.update', $id)
+                    route('api.siswa.update', $id)
                 ]
             );
         }
@@ -139,7 +139,7 @@ class SiswaService
                 'data' => SiswaResource::collection($students)
             ],
             [
-                route('siswa.destroy', $id)
+                route('api.siswa.destroy', $id)
             ]
         );
     }

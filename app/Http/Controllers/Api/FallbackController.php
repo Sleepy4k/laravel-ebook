@@ -37,7 +37,7 @@ class FallbackController extends Controller
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('landing.index'));
+            return $this->catchError($th, route('api.landing.index'));
         }
     }
 }

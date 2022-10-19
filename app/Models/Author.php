@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Author extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     /**
      * The table associated with created data.
@@ -103,4 +105,19 @@ class Author extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+    
+    /**
+     * The spatie log that setting log option.
+     *
+     * @var bool
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                            ->logOnly(['nama', 'tanggal_lahir', 'tempat_lahir', 'kelamin', 'email', 'nomor_hp'])
+                            ->logOnlyDirty()
+                            ->useLogName('Author')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model Author successfully {$eventName}")
+                            ->dontSubmitEmptyLogs();
+    }
 }

@@ -39,7 +39,7 @@ class BookController extends Controller
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('book.store'));
+            return $this->catchError($th, route('api.book.store'));
         }
     }
 
@@ -54,7 +54,7 @@ class BookController extends Controller
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('book.index'));
+            return $this->catchError($th, route('api.book.index'));
         }
     }
 
@@ -69,7 +69,7 @@ class BookController extends Controller
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('book.show', $id));
+            return $this->catchError($th, route('api.book.show', $id));
         }
     }
 
@@ -85,7 +85,7 @@ class BookController extends Controller
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('book.update', $id));
+            return $this->catchError($th, route('api.book.update', $id));
         }
     }
 
@@ -100,7 +100,7 @@ class BookController extends Controller
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('book.destroy', $id));
+            return $this->catchError($th, route('api.book.destroy', $id));
         }
     }
 }

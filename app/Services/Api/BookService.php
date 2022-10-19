@@ -38,7 +38,7 @@ class BookService
                     'data' => BookResource::collection($books)
                 ],
                 [
-                    route('book.index')
+                    route('api.book.index')
                 ]
             );
         } else {
@@ -47,7 +47,7 @@ class BookService
                     'data' => 'Tidak ada data yang tersedia'
                 ],
                 [
-                    route('book.index')
+                    route('api.book.index')
                 ]
             );
         }
@@ -67,7 +67,7 @@ class BookService
                 'data' => new BookResource($book)
             ],
             [
-                route('book.store')
+                route('api.book.store')
             ]
         );
     }
@@ -86,7 +86,7 @@ class BookService
                 'data' => new BookResource($book)
             ],
             [
-                route('book.show', $id)
+                route('api.book.show', $id)
             ]
         );
     }
@@ -109,7 +109,7 @@ class BookService
                     'data' => new BookResource($book)
                 ],
                 [
-                    route('book.update', $id)
+                    route('api.book.update', $id)
                 ]
             );
         } else {
@@ -118,7 +118,7 @@ class BookService
                     'data' => 'Tidak ada data yang diubah'
                 ],
                 [
-                    route('book.update', $id)
+                    route('api.book.update', $id)
                 ]
             );
         }
@@ -139,7 +139,7 @@ class BookService
                 'data' => BookResource::collection($books)
             ],
             [
-                route('book.destroy', $id)
+                route('api.book.destroy', $id)
             ]
         );
     }

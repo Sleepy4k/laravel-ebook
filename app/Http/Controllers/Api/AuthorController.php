@@ -39,7 +39,7 @@ class AuthorController extends Controller
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.index'));
+            return $this->catchError($th, route('api.author.index'));
         }
     }
 
@@ -54,7 +54,7 @@ class AuthorController extends Controller
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.store'));
+            return $this->catchError($th, route('api.author.store'));
         }
     }
 
@@ -69,7 +69,7 @@ class AuthorController extends Controller
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.show', $id));
+            return $this->catchError($th, route('api.author.show', $id));
         }
     }
 
@@ -85,7 +85,7 @@ class AuthorController extends Controller
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.update', $id));
+            return $this->catchError($th, route('api.author.update', $id));
         }
     }
 
@@ -100,7 +100,7 @@ class AuthorController extends Controller
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('author.destroy', $id));
+            return $this->catchError($th, route('api.author.destroy', $id));
         }
     }
 }

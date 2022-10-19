@@ -18,7 +18,7 @@ class FallbackService
                 'error' => 'Route resource tidak ditemukan silahkan hubungi pihak pengembang'
             ],
             [
-                route('me.index')
+                route('api.me.index')
             ]
         );
     }

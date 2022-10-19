@@ -38,7 +38,7 @@ class AuthorService
                     'data' => AuthorResource::collection($authors)
                 ],
                 [
-                    route('author.index')
+                    route('api.author.index')
                 ]
             );
         } else {
@@ -47,7 +47,7 @@ class AuthorService
                     'data' => 'Tidak ada data yang tersedia'
                 ],
                 [
-                    route('author.index')
+                    route('api.author.index')
                 ]
             );
         }
@@ -67,7 +67,7 @@ class AuthorService
                 'data' => new AuthorResource($author)
             ],
             [
-                route('author.store')
+                route('api.author.store')
             ]
         );
     }
@@ -86,7 +86,7 @@ class AuthorService
                 'data' => new AuthorResource($author)
             ],
             [
-                route('author.show', $id)
+                route('api.author.show', $id)
             ]
         );
     }
@@ -109,7 +109,7 @@ class AuthorService
                     'data' => new AuthorResource($author)
                 ],
                 [
-                    route('author.update', $id)
+                    route('api.author.update', $id)
                 ]
             );
         } else {
@@ -118,7 +118,7 @@ class AuthorService
                     'data' => 'Tidak ada data yang diubah'
                 ],
                 [
-                    route('author.update', $id)
+                    route('api.author.update', $id)
                 ]
             );
         }
@@ -139,7 +139,7 @@ class AuthorService
                 'data' => AuthorResource::collection($authors)
             ],
             [
-                route('author.destroy', $id)
+                route('api.author.destroy', $id)
             ]
         );
     }

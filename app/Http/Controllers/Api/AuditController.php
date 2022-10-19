@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Traits\ApiRespons;
-use App\Services\Api\LandingService;
+use App\Services\Api\AuditService;
 use App\Http\Controllers\Controller;
 
-class LandingController extends Controller
+class AuditController extends Controller
 {
     use ApiRespons;
 
@@ -32,12 +32,27 @@ class LandingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(LandingService $service)
+    public function index(AuditService $service)
     {
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.landing.index'));
+            return $this->catchError($th, route('api.audit.index'));
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(AuditService $service, $id)
+    {
+        try {
+            return $service->show($id);
+        } catch (\Throwable $th) {
+            return $this->catchError($th, route('api.audit.show', $id));
         }
     }
 }

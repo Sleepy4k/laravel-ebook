@@ -15,14 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Index Route
-Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
-
-// Home Route Resource
-Route::resource('/me', Api\HomeController::class, ['only' => ['index']]);
-Route::resource('/siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
-Route::resource('/author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
-Route::resource('/book', Api\BookController::class, ['except' => ['create', 'edit']]);
-
-// Fallback Response
-Route::fallback([Api\FallbackController::class, 'index'])->name('fallback');
+// Add namespace prefix
+Route::group(['as' => 'api.'], function() {
+    // Index Route
+    Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
+    
+    // Home Route Resource
+    Route::resource('me', Api\HomeController::class, ['only' => ['index']]);
+    Route::resource('siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
+    Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
+    Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
+    Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
+    
+    // Fallback Response
+    Route::fallback([Api\FallbackController::class, 'index'])->name('fallback');
+});
