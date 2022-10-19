@@ -55,7 +55,7 @@ class RouteServiceProvider extends ServiceProvider
                         'error' => 'too many requests in a given amount of time'
                     ],
                     [
-                        route('landing')
+                        route('api.landing.index')
                     ]
                 );
             });
