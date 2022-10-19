@@ -16,12 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Index Route
-Route::any('/', function() {
-    return response()->json([
-        "status" => Response::HTTP_OK,
-        "message" => "API working fine"
-    ]);
-})->name('landing');
+Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
 
 // Home Route Resource
 Route::resource('/me', Api\HomeController::class, ['only' => ['index']]);
