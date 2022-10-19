@@ -93,7 +93,7 @@ class StoreRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('siswa.index')
+                    route('api.siswa.index')
                 ]
             )
         );
