@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Traits\ApiRespons;
+use App\Services\Api\LandingService;
 use App\Http\Controllers\Controller;
-use App\Services\Api\FallbackService;
 
-class FallbackController extends Controller
+class LandingController extends Controller
 {
     use ApiRespons;
 
@@ -32,7 +32,7 @@ class FallbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FallbackService $service)
+    public function index(LandingService $service)
     {
         try {
             return $service->index();
