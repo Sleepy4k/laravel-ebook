@@ -2,7 +2,6 @@
 
 namespace App\Services\Api;
 
-use Carbon\Carbon;
 use App\Contracts\Models;
 use App\Traits\ApiRespons;
 use App\Http\Resources\AuthorResource;
@@ -31,35 +30,24 @@ class AuthorService
      */
     public function index()
     {
-        try {
-            $authors = $this->authorInterface->all();
+        $authors = $this->authorInterface->all();
 
-            if (count($authors) > 0) {
-                return $this->createResponse(200, 'Data berhasil diterima',
-                    [
-                        'data' => AuthorResource::collection($authors)
-                    ],
-                    [
-                        route('siswa.index')
-                    ]
-                );
-            } else {
-                return $this->createResponse(200, 'Data berhasil diterima',
-                    [
-                        'data' => 'Tidak ada data yang tersedia'
-                    ],
-                    [
-                        route('siswa.index')
-                    ]
-                );
-            }
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
+        if (count($authors) > 0) {
+            return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'error' => $th->getMessage()
+                    'data' => AuthorResource::collection($authors)
                 ],
                 [
-                    route('siswa.index')
+                    route('author.index')
+                ]
+            );
+        } else {
+            return $this->createResponse(200, 'Data berhasil diterima',
+                [
+                    'data' => 'Tidak ada data yang tersedia'
+                ],
+                [
+                    route('author.index')
                 ]
             );
         }
@@ -72,29 +60,16 @@ class AuthorService
      */
     public function store($request)
     {
-        try {
-            $request['tanggal_lahir'] = Carbon::parse($request['tanggal_lahir'])->format('Y-m-d');
+        $author = $this->authorInterface->create($request);
 
-            $author = $this->authorInterface->create($request);
-
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new AuthorResource($author)
-                ],
-                [
-                    route('author.store')
-                ]
-            );
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $th->getMessage()
-                ],
-                [
-                    route('author.store')
-                ]
-            );
-        }
+        return $this->createResponse(200, 'Data berhasil diterima',
+            [
+                'data' => new AuthorResource($author)
+            ],
+            [
+                route('author.store')
+            ]
+        );
     }
 
     /**
@@ -104,27 +79,16 @@ class AuthorService
      */
     public function show($id)
     {
-        try {
-            $author = $this->authorInterface->findById($id);
+        $author = $this->authorInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new AuthorResource($author)
-                ],
-                [
-                    route('author.show', $id)
-                ]
-            );
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $th->getMessage()
-                ],
-                [
-                    route('author.show', $id)
-                ]
-            );
-        }
+        return $this->createResponse(200, 'Data berhasil diterima',
+            [
+                'data' => new AuthorResource($author)
+            ],
+            [
+                route('author.show', $id)
+            ]
+        );
     }
 
     /**
@@ -135,34 +99,23 @@ class AuthorService
      */
     public function update($request, $id)
     {
-        try {
-            $this->authorInterface->update(intval($id), $request);
+        $this->authorInterface->update(intval($id), $request);
 
-            if (!empty($request)) {
-                $author = $this->authorInterface->findById($id);
+        if (!empty($request)) {
+            $author = $this->authorInterface->findById($id);
 
-                return $this->createResponse(200, 'Data berhasil diterima',
-                    [
-                        'data' => new AuthorResource($author)
-                    ],
-                    [
-                        route('author.update', $id)
-                    ]
-                );
-            } else {
-                return $this->createResponse(200, 'Data berhasil diterima',
-                    [
-                        'data' => 'Tidak ada data yang diubah'
-                    ],
-                    [
-                        route('author.update', $id)
-                    ]
-                );
-            }
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
+            return $this->createResponse(200, 'Data berhasil diterima',
                 [
-                    'error' => $th->getMessage()
+                    'data' => new AuthorResource($author)
+                ],
+                [
+                    route('author.update', $id)
+                ]
+            );
+        } else {
+            return $this->createResponse(200, 'Data berhasil diterima',
+                [
+                    'data' => 'Tidak ada data yang diubah'
                 ],
                 [
                     route('author.update', $id)
@@ -178,11 +131,10 @@ class AuthorService
      */
     public function destroy($id)
     {
-        try {
-            $this->authorInterface->deleteById($id);
-            $authors = $this->authorInterface->all();
+        $this->authorInterface->deleteById($id);
+        $authors = $this->authorInterface->all();
 
-            return $this->createResponse(200, 'Data berhasil dihapus',
+        return $this->createResponse(200, 'Data berhasil dihapus',
             [
                 'data' => AuthorResource::collection($authors)
             ],
@@ -190,15 +142,5 @@ class AuthorService
                 route('author.destroy', $id)
             ]
         );
-        } catch (\Throwable $th) {
-            return $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $th->getMessage()
-                ],
-                [
-                    route('author.destroy', $id)
-                ]
-            );
-        }
     }
 }
