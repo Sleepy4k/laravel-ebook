@@ -40,7 +40,7 @@ class StoreRequest extends FormRequest
             'deskripsi' => ['required', 'string'],
             'author' => ['required', 'numeric'],
             'penerbit' => ['required', 'string', 'max:255'],
-            'tanggal_terbit' => ['required']
+            'tanggal_terbit' => ['required', 'date_format:d-m-Y']
         ];
     }
 

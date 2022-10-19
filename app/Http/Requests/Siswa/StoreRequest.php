@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Siswa;
 
+use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -37,7 +39,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'nama' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255'],
+            'kelamin' => ['required','string','max:255', Rule::in(GenderEnum::$gender)],
             'umur' => ['required','numeric']
         ];
     }
