@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\BookResource;
 
-class BookService
+class BookService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var bookInterface
-     */
-    private $bookInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\BookInterface $bookInterface
-     */
-    public function __construct(Models\BookInterface $bookInterface)
-    {
-        $this->bookInterface = $bookInterface;
-    }
-
     /**
      * Index function.
      */

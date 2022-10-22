@@ -2,14 +2,12 @@
 
 namespace App\Services\Api;
 
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\LandingResource;
 
-class LandingService
+class LandingService extends ApiService
 {
-    use ApiRespons;
-
     /**
      * Get routes function.
      */

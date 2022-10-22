@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\AuthorResource;
 
-class AuthorService
+class AuthorService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var authorInterface
-     */
-    private $authorInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\AuthorInterface $authorInterface
-     */
-    public function __construct(Models\AuthorInterface $authorInterface)
-    {
-        $this->authorInterface = $authorInterface;
-    }
-
     /**
      * Index function.
      */

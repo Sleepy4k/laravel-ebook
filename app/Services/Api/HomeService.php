@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\HomeResource;
 
-class HomeService
+class HomeService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var userInterface
-     */
-    private $userInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\UserInterface $userInterface
-     */
-    public function __construct(Models\UserInterface $userInterface)
-    {
-        $this->userInterface = $userInterface;
-    }
-
     /**
      * Index function.
      */
