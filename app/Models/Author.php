@@ -114,7 +114,7 @@ class Author extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama', 'tanggal_lahir', 'tempat_lahir', 'kelamin', 'email', 'nomor_hp'])
+                            ->logOnly(['nama'])
                             ->logOnlyDirty()
                             ->useLogName('Author')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Author successfully {$eventName}")

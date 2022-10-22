@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Add namespace prefix
-Route::group(['as' => 'api.'], function() {
-    // Index Route
-    Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
-    
-    // Home Route Resource
-    Route::resource('me', Api\HomeController::class, ['only' => ['index']]);
-    Route::resource('siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
-    Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
-    Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
-    Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
-    
-    // Fallback Response
-    Route::fallback([Api\FallbackController::class, 'index'])->name('fallback');
-});
+// Index Route
+Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
+
+// Single Route Resource
+Route::resource('me', Api\HomeController::class, ['only' => ['index']]);
+Route::resource('siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
+Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
+Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
+Route::resource('category', Api\BookCategoryController::class, ['except' => ['create', 'edit']]);
+Route::resource('publisher', Api\PublisherController::class, ['except' => ['create', 'edit']]);
+Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
+
+// Fallback Route
+Route::fallback([Api\FallbackController::class, 'index'])->name('fallback');

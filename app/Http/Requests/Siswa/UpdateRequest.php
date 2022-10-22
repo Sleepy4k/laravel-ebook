@@ -39,8 +39,12 @@ class UpdateRequest extends FormRequest
     {
         return [
             'nama' => ['nullable','string','max:255'],
-            'kelamin' => ['nullable','string','max:255', Rule::in(GenderEnum::$gender)],
-            'umur' => ['nullable','numeric']
+            'umur' => ['nullable','string','max:255'],
+            'kelamin' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['nullable', 'string','max:255','email:dns','unique:siswas,email'],
+            'nomor_hp' => ['nullable','string','max:255'],
+            'alamat' => ['nullable','string'],
+            'kelas' => ['nullable','string','max:255']
         ];
     }
 
@@ -52,7 +56,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            // 
+            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 

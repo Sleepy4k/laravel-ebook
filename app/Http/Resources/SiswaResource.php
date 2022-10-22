@@ -17,8 +17,12 @@ class SiswaResource extends JsonResource
         return [
             "ID" => $this->id,
             "Nama" => $this->nama,
+            "Umur" => $this->umur . ' Tahun',
             "Jenis Kelamin" => $this->kelamin,
-            "Umur" => $this->umur . ' Tahun'
+            "Surel" => $this->email,
+            "Nomor Handphone" => $this->nomor_hp,
+            "Alamat Rumah" => $this->alamat,
+            "Kelas" => $this->kelas
         ];
     }
 }

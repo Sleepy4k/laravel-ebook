@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Book;
 
 use App\Traits\ApiRespons;
+use App\Enums\BookStatusEnum;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -36,11 +38,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => ['required', 'string', 'max:255', 'unique:books,judul'],
-            'deskripsi' => ['required', 'string'],
-            'author' => ['required', 'numeric'],
-            'penerbit' => ['required', 'string', 'max:255'],
-            'tanggal_terbit' => ['required', 'date_format:d-m-Y']
+            'judul' => ['required','string','max:255','unique:books,judul'],
+            'deskripsi' => ['required','string'],
+            'author_id' => ['required','numeric'],
+            'publisher_id' => ['required','numeric'],
+            'category_id' => ['required','numeric'],
+            'tanggal_terbit' => ['required','date_format:d-m-Y'],
+            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
         ];
     }
 
@@ -52,7 +56,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            // 
+            'tersedia' => 'Data `tersedia` tidak valid, data harus bernilai Y atau N'
         ];
     }
 

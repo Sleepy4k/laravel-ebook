@@ -16,11 +16,7 @@ class AuthorResource extends JsonResource
     {
         return [
             'ID' => $this->id,
-            'Nama' => $this->nama,
-            'Tempat, Tanggal lahir' => $this->tempat_lahir . ', '. $this->tanggal_lahir->format('d-m-Y'),
-            'Jenis Kelamin' => $this->kelamin,
-            'Email' => $this->email,
-            'Nomor Handphone' => $this->nomor_hp
+            'Nama' => $this->nama
         ];
     }
 }

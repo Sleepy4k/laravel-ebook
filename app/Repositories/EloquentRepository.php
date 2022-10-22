@@ -33,13 +33,17 @@ class EloquentRepository implements EloquentInterface
      */
     public function all(array $columns = ['*'], array $relations = [], array $wheres = []): Collection
     {
-        $model = $this->model->with($relations);
+        try {
+            $model = $this->model->with($relations);
 
-        if (!empty($wheres)) {
-            $model->where($wheres);
+            if (!empty($wheres)) {
+                $model->where($wheres);
+            }
+
+            return $model->get($columns);
+        } catch (\Throwable $th) {
+            return $th;
         }
-
-        return $model->get($columns);
     }
 
     /**
@@ -49,7 +53,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function allTrashed(): Collection
     {
-        return $this->model->onlyTrashed()->get();
+        try {
+            return $this->model->onlyTrashed()->get();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -63,7 +71,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findById(int $modelId, array $columns = ['*'], array $relations = [], array $appends = []): ?Model
     {
-        return $this->model->select($columns)->with($relations)->findOrFail($modelId)->append($appends);
+        try {
+            return $this->model->select($columns)->with($relations)->findOrFail($modelId)->append($appends);
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -77,7 +89,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findByCustomId(array $wheres = [], array $columns = ['*'], array $relations = [], array $appends = []): ?Model
     {
-        return $this->model->select($columns)->with($relations)->where($wheres)->firstOrFail();
+        try {
+            return $this->model->select($columns)->with($relations)->where($wheres)->firstOrFail();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**
@@ -88,7 +104,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findTrashedById(int $modelId): ?Model
     {
-        return $this->model->withTrashed()->findOrFail($modelId);
+        try {
+            return $this->model->withTrashed()->findOrFail($modelId);
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -99,7 +119,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findTrashedByCustomId(array $wheres = []): ?Model
     {
-        return $this->model->withTrashed()->where($wheres)->firstOrFail();
+        try {
+            return $this->model->withTrashed()->where($wheres)->firstOrFail();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**
@@ -110,7 +134,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findOnlyTrashedById(int $modelId): ?Model
     {
-        return $this->model->onlyTrashed()->findOrFail($modelId);
+        try {
+            return $this->model->onlyTrashed()->findOrFail($modelId);
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -121,7 +149,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function findOnlyTrashedByCustomId(array $wheres = []): ?Model
     {
-        return $this->model->onlyTrashed()->where($wheres)->firstOrFail();
+        try {
+            return $this->model->onlyTrashed()->where($wheres)->firstOrFail();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 
     /**
@@ -132,9 +164,13 @@ class EloquentRepository implements EloquentInterface
      */
     public function create(array $payload): ?Model
     {
-        $model = $this->model->create($payload);
-
-        return $model->fresh();
+        try {
+            $model = $this->model->create($payload);
+    
+            return $model->fresh();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -146,9 +182,13 @@ class EloquentRepository implements EloquentInterface
      */
     public function update(int $modelId, array $payload): bool
     {
-        $model = $this->findById($modelId);
-
-        return $model->update($payload);
+        try {
+            $model = $this->findById($modelId);
+    
+            return $model->update($payload);
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -159,7 +199,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function deleteById(int $modelId): bool
     {
-        return $this->findById($modelId)->delete();
+        try {
+            return $this->findById($modelId)->delete();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -170,7 +214,11 @@ class EloquentRepository implements EloquentInterface
      */
     public function restoreById(int $modelId): bool
     {
-        return $this->findOnlyTrashedById($modelId)->restore();
+        try {
+            return $this->findOnlyTrashedById($modelId)->restore();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
     
     /**
@@ -181,6 +229,10 @@ class EloquentRepository implements EloquentInterface
      */
     public function permanentlyDeleteById(int $modelId): bool
     {
-        return $this->findTrashedById($modelId)->forceDelete();
+        try {
+            return $this->findTrashedById($modelId)->forceDelete();
+        } catch (\Throwable $th) {
+            return $th;
+        }
     }
 }

@@ -120,7 +120,7 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama', 'umur', 'tinggi', 'sayang'])
+                            ->logOnly(['nama', 'username'])
                             ->logOnlyDirty()
                             ->useLogName('Users')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Users successfully {$eventName}")

@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('kelamin', ['putra', 'putri']);
-            $table->integer('umur');
+            $table->string('umur');
+            $table->string('kelamin');
+            $table->string('email');
+            $table->string('nomor_hp');
+            $table->text('alamat');
+            $table->string('kelas');
             $table->timestamps();
         });
     }

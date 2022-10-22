@@ -112,7 +112,7 @@ class Siswa extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama', 'kelamin', 'umur'])
+                            ->logOnly(['nama', 'umur', 'kelamin', 'email', 'nomor_hp', 'alamat', 'kelas'])
                             ->logOnlyDirty()
                             ->useLogName('Siswa')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Siswa successfully {$eventName}")
