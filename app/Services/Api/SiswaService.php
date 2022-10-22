@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\SiswaResource;
 
-class SiswaService
+class SiswaService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var siswaInterface
-     */
-    private $siswaInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\SiswaInterface $siswaInterface
-     */
-    public function __construct(Models\SiswaInterface $siswaInterface)
-    {
-        $this->siswaInterface = $siswaInterface;
-    }
-
     /**
      * Index function.
      */

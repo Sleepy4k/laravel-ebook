@@ -2,12 +2,10 @@
 
 namespace App\Services\Api;
 
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 
-class FallbackService
+class FallbackService extends ApiService
 {
-    use ApiRespons;
-
     /**
      * Index function.
      */

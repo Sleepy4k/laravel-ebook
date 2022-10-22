@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\AuditResource;
 
-class AuditService
+class AuditService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var auditInterface
-     */
-    private $auditInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\AuditInterface $auditInterface
-     */
-    public function __construct(Models\AuditInterface $auditInterface)
-    {
-        $this->auditInterface = $auditInterface;
-    }
-
     /**
      * Index function.
      */

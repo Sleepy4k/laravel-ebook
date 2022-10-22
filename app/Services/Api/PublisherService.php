@@ -2,29 +2,11 @@
 
 namespace App\Services\Api;
 
-use App\Contracts\Models;
-use App\Traits\ApiRespons;
+use App\Services\ApiService;
 use App\Http\Resources\PublisherResource;
 
-class PublisherService
+class PublisherService extends ApiService
 {
-    use ApiRespons;
-
-    /**
-     * @var publisherInterface
-     */
-    private $publisherInterface;
-
-    /**
-     * Account service constructor.
-     * 
-     * @param App\Contracts\Models\PublisherInterface $publisherInterface
-     */
-    public function __construct(Models\PublisherInterface $publisherInterface)
-    {
-        $this->publisherInterface = $publisherInterface;
-    }
-
     /**
      * Index function.
      */
