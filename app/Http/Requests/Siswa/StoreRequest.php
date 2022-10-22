@@ -39,8 +39,12 @@ class StoreRequest extends FormRequest
     {
         return [
             'nama' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255', Rule::in(GenderEnum::$gender)],
-            'umur' => ['required','numeric']
+            'umur' => ['required','string','max:255'],
+            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
+            'nomor_hp' => ['required','string','max:255'],
+            'alamat' => ['required','string'],
+            'kelas' => ['required','string','max:255']
         ];
     }
 
@@ -52,7 +56,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            // 
+            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 

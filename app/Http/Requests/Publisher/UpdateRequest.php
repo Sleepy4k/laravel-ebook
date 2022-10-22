@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Publisher;
 
 use App\Traits\ApiRespons;
-use App\Enums\BookStatusEnum;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -38,13 +36,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => ['nullable','string','max:255','unique:books,judul'],
-            'deskripsi' => ['nullable','string'],
-            'author_id' => ['nullable','numeric'],
-            'publisher_id' => ['nullable','numeric'],
-            'category_id' => ['nullable','numeric'],
-            'tanggal_terbit' => ['nullable','date_format:d-m-Y'],
-            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
+            'nama' => ['required','string','max:255']
         ];
     }
 
@@ -56,7 +48,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'tersedia' => 'Data `tersedia` tidak valid, data harus bernilai Y atau N'
+            // 
         ];
     }
 
@@ -97,7 +89,7 @@ class UpdateRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('api.book.index')
+                    route('api.author.index')
                 ]
             )
         );

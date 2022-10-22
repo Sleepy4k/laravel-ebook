@@ -38,12 +38,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable', 'string', 'max:255'],
-            'tanggal_lahir' => ['nullable', 'date_format:d-m-Y'],
-            'tempat_lahir' => ['nullable', 'string', 'max:255'],
-            'kelamin' => ['nullable', 'string', 'max:255', Rule::in(GenderEnum::$gender)],
-            'email' => ['nullable', 'string', 'max:255', 'email:dns', 'unique:authors,email'],
-            'nomor_hp' => ['nullable', 'string', 'max:255']
+            'nama' => ['nullable','string','max:255']
         ];
     }
 
