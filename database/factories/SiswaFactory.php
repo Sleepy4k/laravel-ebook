@@ -17,7 +17,7 @@ class SiswaFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => fake()->name(),
+            'nama' => fake()->name,
             'umur' => rand(14,18),
             'kelamin' => fake()->randomElements(['putra', 'putri'])[0],
             'email' => fake()->safeEmail,
