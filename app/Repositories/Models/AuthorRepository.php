@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Models;
 
-use Carbon\Carbon;
 use App\Models\Author;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\EloquentRepository;
