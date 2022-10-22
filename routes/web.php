@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
+})->name('landing');
+
+Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function() {
+    Route::get('/', function () {
+        return view('pages.dashboard.main');
+    })->name('main');
+
+    Route::get('buku', function () {
+        return view('pages.dashboard.buku');
+    })->name('buku'); 
 });
