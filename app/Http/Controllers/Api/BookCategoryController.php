@@ -2,33 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Traits\ApiRespons;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use App\Services\Api\BookCategoryService;
 use App\Http\Requests\BookCategory\StoreRequest;
 use App\Http\Requests\BookCategory\UpdateRequest;
 
-class BookCategoryController extends Controller
+class BookCategoryController extends ApiController
 {
-    use ApiRespons;
-
-    /**
-     * Handler try catch error.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private function catchError($error, $route)
-    {
-        return $this->createResponse(500, 'Server Error',
-            [
-                'error' => $error->getMessage()
-            ],
-            [
-                $route
-            ]
-        );
-    }
-
     /**
      * Display a listing of the resource.
      *

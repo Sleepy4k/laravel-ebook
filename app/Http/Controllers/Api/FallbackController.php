@@ -2,31 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Traits\ApiRespons;
-use App\Http\Controllers\Controller;
 use App\Services\Api\FallbackService;
+use App\Http\Controllers\ApiController;
 
-class FallbackController extends Controller
+class FallbackController extends ApiController
 {
-    use ApiRespons;
-
-    /**
-     * Handler try catch error.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private function catchError($error, $route)
-    {
-        return $this->createResponse(500, 'Server Error',
-            [
-                'error' => $error->getMessage()
-            ],
-            [
-                $route
-            ]
-        );
-    }
-
     /**
      * Display a listing of the resource.
      *
