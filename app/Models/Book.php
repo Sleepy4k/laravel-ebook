@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
@@ -102,7 +103,9 @@ class Book extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'tanggal_terbit' => 'datetime:Y-m-d'
+    ];
     
     /**
      * The spatie log that setting log option.
@@ -117,5 +120,35 @@ class Book extends Model
                             ->useLogName('Book')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Book successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * Get the auther that owns the book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class,'author_id','id');
+    }
+
+    /**
+     * Get the category that owns the book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(BookCategory::class);
+    }
+
+    /**
+     * Get the publisher that owns the book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class);
     }
 }
