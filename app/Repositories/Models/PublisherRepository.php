@@ -2,12 +2,12 @@
 
 namespace App\Repositories\Models;
 
-use Spatie\Activitylog\Models\Activity;
+use App\Models\Publisher;
 use Illuminate\Database\Eloquent\Model;
-use App\Contracts\Models\AuditInterface;
 use App\Repositories\EloquentRepository;
+use App\Contracts\Models\PublisherInterface;
 
-class AuditRepository extends EloquentRepository implements AuditInterface
+class PublisherRepository extends EloquentRepository implements PublisherInterface
 {
     /**
      * @var Model
@@ -19,7 +19,7 @@ class AuditRepository extends EloquentRepository implements AuditInterface
      * 
      * @param Model $model
      */
-    public function __construct(Activity $model)
+    public function __construct(Publisher $model)
     {
         $this->model = $model;
     }
