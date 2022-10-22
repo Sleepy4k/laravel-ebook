@@ -17,7 +17,7 @@ class ApiController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    private function catchError($error, $route)
+    protected function catchError($error, $route)
     {
         return $this->createResponse(500, 'Server Error',
             [
