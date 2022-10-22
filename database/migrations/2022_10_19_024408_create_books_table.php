@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('judul')->unique();
             $table->text('deskripsi');
-            $table->integer('author');
-            $table->string('penerbit');
+            $table->integer('author_id')->nullable();
+            $table->integer('publisher_id')->nullable();
+            $table->integer('category_id')->nullable();
             $table->date('tanggal_terbit');
+            $table->string('tersedia')->default('Y');
             $table->timestamps();
         });
     }

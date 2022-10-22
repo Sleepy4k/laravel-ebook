@@ -18,8 +18,12 @@ class SiswaFactory extends Factory
     {
         return [
             'nama' => fake()->name(),
+            'umur' => rand(14,18),
             'kelamin' => fake()->randomElements(['putra', 'putri'])[0],
-            'umur' => rand(14,18)
+            'email' => fake()->safeEmail,
+            'nomor_hp' => fake()->phoneNumber,
+            'alamat' => fake()->address,
+            'kelas' => fake()->randomElements(['X', 'XI', 'XII'])[0] . ' ' .fake()->randomElements(['TJA', 'TKJ', 'RPL'])[0] . ' ' . rand(1,9)
         ];
     }
 }
