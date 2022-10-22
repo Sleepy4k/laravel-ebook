@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Book extends Model
+class BookCategory extends Model
 {
     use HasFactory, LogsActivity;
     
@@ -37,7 +37,7 @@ class Book extends Model
      *
      * @var string
      */
-    protected $table = 'books';
+    protected $table = 'book_categories';
 
     /**
      * The primary key associated with the table.
@@ -112,10 +112,10 @@ class Book extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['judul', 'deskripsi', 'author_id', 'publisher_id', 'category_id', 'tanggal_terbit', 'tersedia'])
+                            ->logOnly(['nama'])
                             ->logOnlyDirty()
-                            ->useLogName('Book')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model Book successfully {$eventName}")
+                            ->useLogName('Book Category')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model Book Category successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
     }
 }
