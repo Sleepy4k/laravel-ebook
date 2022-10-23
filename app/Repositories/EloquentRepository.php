@@ -29,18 +29,54 @@ class EloquentRepository implements EloquentInterface
      * @param array $columns
      * @param array $relations
      * @param array $wheres
+     * @param string $orderBy
+     * @param bool $latest
      * @return Collection
      */
-    public function all(array $columns = ['*'], array $relations = [], array $wheres = []): Collection
+    public function all(array $columns = ['*'], array $relations = [], array $wheres = [], string $orderBy = 'created_at', bool $latest = true): Collection
     {
         try {
             $model = $this->model->with($relations);
+
+            if (!empty($orderBy)) {
+                $model->orderBy($orderBy, $latest ? 'desc' : 'asc');
+            }
 
             if (!empty($wheres)) {
                 $model->where($wheres);
             }
 
             return $model->get($columns);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    /**
+     * Get all in pagination models.
+     *
+     * @param int $paginate
+     * @param array $columns
+     * @param array $relations
+     * @param array $wheres
+     * @param string $orderBy
+     * @param bool $latest
+     * @return Collection
+     */
+    public function paginate(int $paginate = 10, array $columns = ['*'], array $relations = [], array $wheres = [], string $orderBy = 'created_at', bool $latest = true)
+    {
+        try {
+            $model = $this->model->with($relations);
+
+            if (!empty($orderBy)) {
+                $model->orderBy($orderBy, $latest ? 'desc' : 'asc');
+            }
+
+            if (!empty($wheres)) {
+                $model->where($wheres);
+            }
+
+            return $model->select($columns)->paginate($paginate);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
