@@ -5,6 +5,7 @@ namespace App\Models;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BookCategory extends Model
@@ -117,5 +118,15 @@ class BookCategory extends Model
                             ->useLogName('Book Category')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Book Category successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * Get the book that have the book category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function books(): HasMany
+    {
+        return $this->hasMany(Book::class,'author_id','id');
     }
 }
