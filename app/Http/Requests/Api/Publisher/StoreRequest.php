@@ -89,7 +89,7 @@ class StoreRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('api.author.index')
+                    route('api.publisher.index')
                 ]
             )
         );
