@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Services\Api\AuthorService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Author\StoreRequest;
-use App\Http\Requests\Author\UpdateRequest;
+use App\Http\Requests\Api\Author\StoreRequest;
+use App\Http\Requests\Api\Author\UpdateRequest;
 
 class AuthorController extends ApiController
 {
