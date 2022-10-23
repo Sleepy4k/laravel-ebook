@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web;
+use App\Http\Controllers\Web\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.welcome');
-})->name('landing');
+Route::any('/', [Web\LandingController::class, 'index'])->name('landing');
 
-Route::group(['as' => 'dashboard.', 'prefix' => 'dashboard'], function() {
-    Route::get('/', function () {
-        return view('pages.dashboard.main');
-    })->name('main');
+Route::middleware('guest')->group(function() {
+    Route::resource('login', Auth\LoginController::class, ['only' => ['index', 'store']]);
+    Route::resource('register', Auth\RegisterController::class, ['only' => ['index', 'store']]);
+});
 
-    Route::get('buku', function () {
-        return view('pages.dashboard.buku');
-    })->name('buku'); 
+Route::middleware('auth')->group(function() {
+    Route::resource('logout', Auth\LogoutController::class, ['only' => ['store']]);
+    
+    Route::resource('dashboard', Web\DashboardController::class, ['only' => ['index']]);
+    Route::resource('book', Web\BookController::class);
 });
