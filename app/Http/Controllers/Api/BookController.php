@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Services\Api\BookService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Book\StoreRequest;
-use App\Http\Requests\Book\UpdateRequest;
+use App\Http\Requests\Api\Book\StoreRequest;
+use App\Http\Requests\Api\Book\UpdateRequest;
 
 class BookController extends ApiController
 {

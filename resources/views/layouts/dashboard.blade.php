@@ -17,7 +17,7 @@
                 </header>
                 <div class="content-wrapper container">
                     <div class="page-heading">
-                        <h3>@yield('page-title')</h3>
+                        @includeIf('partials.navbar.dashboard.breadcrumb')
                     </div>
                     <div class="page-content">
                         <section class="row">
@@ -28,5 +28,7 @@
                 @includeIf('partials.footer.dashboard')
             </div>
         </div>
+
+        @includeIf('partials.script.dashboard')
     </body>
 </html>

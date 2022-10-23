@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Services\Api\PublisherService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Publisher\StoreRequest;
-use App\Http\Requests\Publisher\UpdateRequest;
+use App\Http\Requests\Api\Publisher\StoreRequest;
+use App\Http\Requests\Api\Publisher\UpdateRequest;
 
 class PublisherController extends ApiController
 {

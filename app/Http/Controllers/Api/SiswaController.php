@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Services\Api\SiswaService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Siswa\StoreRequest;
-use App\Http\Requests\Siswa\UpdateRequest;
+use App\Http\Requests\Api\Siswa\StoreRequest;
+use App\Http\Requests\Api\Siswa\UpdateRequest;
 
 class SiswaController extends ApiController
 {
