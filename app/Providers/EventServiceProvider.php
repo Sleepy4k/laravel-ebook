@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models;
+use App\Observers;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -28,6 +30,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Models Observer
+        Models\User::observe(Observers\UserObserver::class);
+        
+        // Database Query
         Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
             Log::debug('query : '.$query->sql.' | time '.$query->time.' | connection '.$query->connection->getName());
         });
@@ -40,6 +46,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function shouldDiscoverEvents()
     {
-        return false;
+        return true;
     }
 }
