@@ -22,7 +22,7 @@ class BookFactory extends Factory
             'author_id' => rand(1,25),
             'publisher_id' => rand(1,25),
             'category_id' => rand(1,25),
-            'tanggal_terbit' => fake()->dateTimeBetween('2000-01-01', '2022-12-31')
+            'tanggal_terbit' => fake()->dateTimeBetween('2000-01-01', now()->format('Y-m-d'))
         ];
     }
 }
