@@ -2,7 +2,7 @@
     <div class="container">
         <ul>
             <li class="menu-item">
-                <a href="{{ route('dashboard.main') }}" class='menu-link'>
+                <a href="{{ route('dashboard.index') }}" class='menu-link'>
                     <span>
                         <i class="bi bi-grid-fill"></i>
                         Dashboard
@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ route('dashboard.buku') }}" class='menu-link'>
+                <a href="{{ route('book.index') }}" class='menu-link'>
                     <span>
                         <i class="bi bi-grid-fill"></i>
                         Buku
@@ -114,10 +114,13 @@
                             <li class="submenu-item">
                                 <a href="#" class='submenu-link'>Akun Saya</a>
                             </li>
-                        </ul>
-                        <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Keluar</a>
+                                <a class="submenu-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Keluar
+                                </a>
+                                <form class='d-none' id="logout-form" action="{{ route('logout.store') }}" method="POST">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>
