@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Siswa;
+namespace App\Http\Requests\Api\BookCategory;
 
-use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     use ApiRespons;
 
@@ -38,13 +36,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255'],
-            'umur' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['required','string','max:255'],
-            'alamat' => ['required','string'],
-            'kelas' => ['required','string','max:255']
+            'nama' => ['required','string','max:255']
         ];
     }
 
@@ -56,7 +48,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            // 
         ];
     }
 
@@ -97,7 +89,7 @@ class StoreRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('api.siswa.index')
+                    route('api.author.index')
                 ]
             )
         );

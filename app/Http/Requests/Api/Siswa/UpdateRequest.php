@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Publisher;
+namespace App\Http\Requests\Api\Siswa;
 
+use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     use ApiRespons;
 
@@ -36,7 +38,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255']
+            'nama' => ['nullable','string','max:255'],
+            'umur' => ['nullable','string','max:255'],
+            'kelamin' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['nullable', 'string','max:255','email:dns','unique:siswas,email'],
+            'nomor_hp' => ['nullable','string','max:255'],
+            'alamat' => ['nullable','string'],
+            'kelas' => ['nullable','string','max:255']
         ];
     }
 
@@ -48,7 +56,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            // 
+            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 
@@ -89,7 +97,7 @@ class StoreRequest extends FormRequest
                     'error' => $validator->errors()
                 ],
                 [
-                    route('api.author.index')
+                    route('api.siswa.index')
                 ]
             )
         );

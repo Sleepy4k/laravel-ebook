@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Requests\BookCategory;
+namespace App\Http\Requests\Web\Auth;
 
-use App\Traits\ApiRespons;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
-    use ApiRespons;
-
     /**
      * Indicates if the validator should stop on the first rule failure.
      *
@@ -36,9 +32,12 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255']
+            'nama' => ['required','max:255','string'],
+            'username' => ['required','max:255','string','unique:users,username'],
+            'password' => ['required','min:8','max:255','string','confirmed']
         ];
     }
+    
 
     /**
      * Custom message for validation
@@ -75,23 +74,20 @@ class StoreRequest extends FormRequest
             // 
         ]);
     }
-
+    
     /**
-     * Custom error message for validation
+     * Custom error response for validation.
      *
      * @return array
      */
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $validator->errors()
-                ],
-                [
-                    route('api.author.index')
-                ]
-            )
-        );
+        $toast = toastr();
+
+        foreach ($validator->messages()->all() as $message) {
+            $toast->error($message, 'Validation');
+        }
+
+        return $toast;
     }
 }

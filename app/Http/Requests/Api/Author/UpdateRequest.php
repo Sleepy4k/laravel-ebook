@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Publisher;
+namespace App\Http\Requests\Api\Author;
 
 use App\Traits\ApiRespons;
 use Illuminate\Foundation\Http\FormRequest;
@@ -36,7 +36,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255']
+            'nama' => ['nullable','string','max:255']
         ];
     }
 

@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Author;
+namespace App\Http\Requests\Api\Author;
 
-use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     use ApiRespons;
 
@@ -38,7 +36,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255']
+            'nama' => ['required','string','max:255']
         ];
     }
 

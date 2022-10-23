@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Author;
+namespace App\Http\Requests\Api\BookCategory;
 
 use App\Traits\ApiRespons;
 use Illuminate\Foundation\Http\FormRequest;

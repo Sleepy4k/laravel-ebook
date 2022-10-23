@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Siswa;
+namespace App\Http\Requests\Web\Book;
 
-use App\Enums\GenderEnum;
-use App\Traits\ApiRespons;
+use App\Enums\BookStatusEnum;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
-    use ApiRespons;
-
     /**
      * Indicates if the validator should stop on the first rule failure.
      *
@@ -38,13 +34,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255'],
-            'umur' => ['nullable','string','max:255'],
-            'kelamin' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['nullable', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['nullable','string','max:255'],
-            'alamat' => ['nullable','string'],
-            'kelas' => ['nullable','string','max:255']
+            'judul' => ['required','string','max:255','unique:books,judul'],
+            'deskripsi' => ['required','string'],
+            'author_id' => ['required','numeric'],
+            'publisher_id' => ['required','numeric'],
+            'category_id' => ['required','numeric'],
+            'tanggal_terbit' => ['required'],
+            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
         ];
     }
 
@@ -56,7 +52,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            'tersedia' => 'Data `tersedia` tidak valid, data harus bernilai Y atau N'
         ];
     }
 
@@ -83,23 +79,20 @@ class UpdateRequest extends FormRequest
             // 
         ]);
     }
-
+    
     /**
-     * Custom error message for validation
+     * Custom error response for validation.
      *
      * @return array
      */
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $validator->errors()
-                ],
-                [
-                    route('api.siswa.index')
-                ]
-            )
-        );
+        $toast = toastr();
+
+        foreach ($validator->messages()->all() as $message) {
+            $toast->error($message, 'Validation');
+        }
+
+        return $toast;
     }
 }

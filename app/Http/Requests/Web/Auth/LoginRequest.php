@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Book;
+namespace App\Http\Requests\Web\Auth;
 
-use App\Traits\ApiRespons;
-use App\Enums\BookStatusEnum;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
-    use ApiRespons;
-
     /**
      * Indicates if the validator should stop on the first rule failure.
      *
@@ -38,15 +32,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => ['required','string','max:255','unique:books,judul'],
-            'deskripsi' => ['required','string'],
-            'author_id' => ['required','numeric'],
-            'publisher_id' => ['required','numeric'],
-            'category_id' => ['required','numeric'],
-            'tanggal_terbit' => ['required','date_format:d-m-Y'],
-            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
+            'username' => ['required','max:255','string'],
+            'password' => ['required','min:8','max:255','string']
         ];
     }
+    
 
     /**
      * Custom message for validation
@@ -56,7 +46,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'tersedia' => 'Data `tersedia` tidak valid, data harus bernilai Y atau N'
+            // 
         ];
     }
 
@@ -83,23 +73,20 @@ class StoreRequest extends FormRequest
             // 
         ]);
     }
-
+    
     /**
-     * Custom error message for validation
+     * Custom error response for validation.
      *
      * @return array
      */
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $validator->errors()
-                ],
-                [
-                    route('api.book.index')
-                ]
-            )
-        );
+        $toast = toastr();
+
+        foreach ($validator->messages()->all() as $message) {
+            $toast->error($message, 'Validation');
+        }
+
+        return $toast;
     }
 }
