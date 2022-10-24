@@ -15,23 +15,13 @@ class SiswaService extends ApiService
         $students = $this->siswaInterface->all();
 
         if (count($students) > 0) {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => SiswaResource::collection($students)
-                ],
-                [
-                    route('api.siswa.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.index'), [
+                'data' => SiswaResource::collection($students)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang tersedia'
-                ],
-                [
-                    route('api.siswa.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.index'), [
+                'data' => 'Tidak ada data yang tersedia'
+            ], 202);
         }
     }
 
@@ -44,14 +34,9 @@ class SiswaService extends ApiService
     {
         $student = $this->siswaInterface->create($request);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new SiswaResource($student)
-            ],
-            [
-                route('api.siswa.store')
-            ]
-        );
+        return $this->createResponse('Data berhasil dibuat', route('api.siswa.store'), [
+            'data' => new SiswaResource($student)
+        ], 201);
     }
 
     /**
@@ -63,14 +48,9 @@ class SiswaService extends ApiService
     {
         $student = $this->siswaInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new SiswaResource($student)
-            ],
-            [
-                route('api.siswa.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.siswa.show', $id), [
+            'data' => new SiswaResource($student)
+        ], 206);
     }
 
     /**
@@ -86,23 +66,13 @@ class SiswaService extends ApiService
         if (!empty($request)) {
             $student = $this->siswaInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new SiswaResource($student)
-                ],
-                [
-                    route('api.siswa.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.update', $id), [
+                'data' => new SiswaResource($student)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang diubah'
-                ],
-                [
-                    route('api.siswa.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.update', $id), [
+                'data' => 'Tidak ada data yang diubah'
+            ], 202);
         }
     }
 
@@ -116,13 +86,8 @@ class SiswaService extends ApiService
         $this->siswaInterface->deleteById($id);
         $students = $this->siswaInterface->all();
 
-        return $this->createResponse(200, 'Data berhasil dihapus',
-            [
-                'data' => SiswaResource::collection($students)
-            ],
-            [
-                route('api.siswa.destroy', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil dihapus', route('api.siswa.destroy', $id), [
+            'data' => SiswaResource::collection($students)
+        ], 202);
     }
 }

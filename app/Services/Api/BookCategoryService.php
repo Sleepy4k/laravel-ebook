@@ -15,23 +15,13 @@ class BookCategoryService extends ApiService
         $books = $this->bookCategoryInterface->all();
 
         if (count($books) > 0) {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => BookCategoryResource::collection($books)
-                ],
-                [
-                    route('api.category.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.category.index'), [
+                'data' => BookCategoryResource::collection($books)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang tersedia'
-                ],
-                [
-                    route('api.category.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.category.index'), [
+                'data' => 'Tidak ada data yang tersedia'
+            ], 202);
         }
     }
 
@@ -44,14 +34,9 @@ class BookCategoryService extends ApiService
     {
         $book = $this->bookCategoryInterface->create($request);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new BookCategoryResource($book)
-            ],
-            [
-                route('api.category.store')
-            ]
-        );
+        return $this->createResponse('Data berhasil dibuat', route('api.category.store'), [
+            'data' => new BookCategoryResource($book)
+        ], 201);
     }
 
     /**
@@ -63,14 +48,9 @@ class BookCategoryService extends ApiService
     {
         $book = $this->bookCategoryInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new BookCategoryResource($book)
-            ],
-            [
-                route('api.category.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.category.show', $id), [
+            'data' => new BookCategoryResource($book)
+        ], 206);
     }
 
     /**
@@ -86,23 +66,13 @@ class BookCategoryService extends ApiService
         if (!empty($request)) {
             $book = $this->bookCategoryInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new BookCategoryResource($book)
-                ],
-                [
-                    route('api.category.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.category.update', $id), [
+                'data' => new BookCategoryResource($book)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang diubah'
-                ],
-                [
-                    route('api.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.category.update', $id), [
+                'data' => 'Tidak ada data yang diubah'
+            ], 202);
         }
     }
 
@@ -116,13 +86,8 @@ class BookCategoryService extends ApiService
         $this->bookCategoryInterface->deleteById($id);
         $books = $this->bookCategoryInterface->all();
 
-        return $this->createResponse(200, 'Data berhasil dihapus',
-            [
-                'data' => BookCategoryResource::collection($books)
-            ],
-            [
-                route('api.category.destroy', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil dihapus', route('api.category.destroy', $id), [
+            'data' => BookCategoryResource::collection($books)
+        ], 202);
     }
 }

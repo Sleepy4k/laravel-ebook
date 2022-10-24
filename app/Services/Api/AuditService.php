@@ -12,14 +12,9 @@ class AuditService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => AuditResource::collection($this->auditInterface->all())
-            ],
-            [
-                route('api.audit.index')
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.audit.index'), [
+            'data' => AuditResource::collection($this->auditInterface->all())
+        ], 202);
     }
 
     /**
@@ -31,13 +26,8 @@ class AuditService extends ApiService
     {
         $audit = $this->auditInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new AuditResource($audit)
-            ],
-            [
-                route('api.audit.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.audit.show', $id), [
+            'data' => new AuditResource($audit)
+        ], 206);
     }
 }

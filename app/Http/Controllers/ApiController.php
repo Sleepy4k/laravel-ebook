@@ -15,13 +15,8 @@ class ApiController extends Controller
      */
     protected function catchError($error, $route)
     {
-        return $this->createResponse(500, 'Server Error',
-            [
-                'error' => $error->getMessage()
-            ],
-            [
-                $route
-            ]
-        );
+        return $this->createResponse('Server Error', $route, [
+            'data' => $error->getMessage()
+        ], 500);
     }
 }

@@ -15,23 +15,13 @@ class BookService extends ApiService
         $books = $this->bookInterface->all();
 
         if (count($books) > 0) {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => BookResource::collection($books)
-                ],
-                [
-                    route('api.book.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.book.index'), [
+                'data' => BookResource::collection($books)
+            ]);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang tersedia'
-                ],
-                [
-                    route('api.book.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.book.index'), [
+                'data' => 'Tidak ada data yang tersedia'
+            ]);
         }
     }
 
@@ -44,14 +34,9 @@ class BookService extends ApiService
     {
         $book = $this->bookInterface->create($request);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new BookResource($book)
-            ],
-            [
-                route('api.book.store')
-            ]
-        );
+        return $this->createResponse('Data berhasil dibuat', route('api.book.store'), [
+            'data' => new BookResource($book)
+        ], 201);
     }
 
     /**
@@ -63,14 +48,9 @@ class BookService extends ApiService
     {
         $book = $this->bookInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new BookResource($book)
-            ],
-            [
-                route('api.book.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.book.show', $id), [
+            'data' => new BookResource($book)
+        ], 206);
     }
 
     /**
@@ -86,23 +66,13 @@ class BookService extends ApiService
         if (!empty($request)) {
             $book = $this->bookInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new BookResource($book)
-                ],
-                [
-                    route('api.book.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.book.update', $id), [
+                'data' => new BookResource($book)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang diubah'
-                ],
-                [
-                    route('api.book.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.book.update', $id), [
+                'data' => 'Tidak ada data yang diubah'
+            ], 202);
         }
     }
 
@@ -116,13 +86,8 @@ class BookService extends ApiService
         $this->bookInterface->deleteById($id);
         $books = $this->bookInterface->all();
 
-        return $this->createResponse(200, 'Data berhasil dihapus',
-            [
-                'data' => BookResource::collection($books)
-            ],
-            [
-                route('api.book.destroy', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil dihapus', route('api.book.destroy', $id), [
+            'data' => BookResource::collection($books)
+        ], 202);
     }
 }
