@@ -75,7 +75,7 @@ class PublisherDataTable extends DataTable
             Column::make('nama')
                     ->title('Nama')
                     ->addClass('text-center'),
-            Column::make('action')
+            Column::computed('action')
                     ->title('Tindakan')
                     ->exportable(false)
                     ->printable(false)

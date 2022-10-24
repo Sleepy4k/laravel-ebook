@@ -2,9 +2,9 @@
 
 namespace App\DataTables;
 
-use App\Models\Role;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;

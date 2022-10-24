@@ -10,7 +10,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
-class CategoryDataTable extends DataTable
+class BookCategoryDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -75,7 +75,7 @@ class CategoryDataTable extends DataTable
             Column::make('nama')
                     ->title('Nama')
                     ->addClass('text-center'),
-            Column::make('action')
+            Column::computed('action')
                     ->title('Tindakan')
                     ->exportable(false)
                     ->printable(false)

@@ -24,6 +24,12 @@ class StudentDataTable extends DataTable
             ->addColumn('action', function($query){
                 return '<a href="'.route("table.student.show", $query->id).'"><i class="fa-solid fa-eye"></i></a> | <a href="'.route('table.student.edit', $query->id).'"><i class="fa-solid fa-pen-to-square"></i></a> | <form action="'.route("table.student.destroy", $query->id).'" method="post" style="display: inline-block">'.csrf_field().method_field("DELETE").'<a href="" class="confirm-delete"><i class="fa-solid fa-trash"></i></a></form>';
             })
+            ->editColumn('umur', function($query){
+                return $query->umur . ' Tahun';
+            })
+            ->editColumn('kelamin', function($query){
+                return ucfirst($query->kelamin);
+            })
             ->setRowId('id');
     }
 
@@ -74,6 +80,20 @@ class StudentDataTable extends DataTable
             Column::make('id'),
             Column::make('nama')
                     ->title('Nama')
+                    ->addClass('text-center'),
+            Column::make('umur')
+                    ->hidden(),
+            Column::make('kelamin')
+                    ->title('Jenis Kelamin')
+                    ->addClass('text-center'),
+            Column::make('email')
+                    ->hidden(),
+            Column::make('nomor_hp')
+                    ->hidden(),
+            Column::make('alamat')
+                    ->hidden(),
+            Column::make('kelas')
+                    ->title('Kelas')
                     ->addClass('text-center'),
             Column::make('action')
                     ->title('Tindakan')
