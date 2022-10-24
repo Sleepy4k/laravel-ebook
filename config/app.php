@@ -210,6 +210,9 @@ return [
 
         // Toast
         Yoeunes\Toastr\ToastrServiceProvider::class,
+
+        // Spatie
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
