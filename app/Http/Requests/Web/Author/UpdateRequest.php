@@ -32,7 +32,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255']
+            'nama' => ['required','string','max:255']
         ];
     }
 
