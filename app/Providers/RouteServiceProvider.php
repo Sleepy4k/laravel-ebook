@@ -51,14 +51,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip())->response(function(){
-                return $this->createResponse(429, 'Too Many Requests',
-                    [
-                        'error' => 'too many requests in a given amount of time'
-                    ],
-                    [
-                        route('api.landing.index')
-                    ]
-                );
+                return $this->createResponse('Too Many Requests', route('api.landing.index'), [
+                    'data' => 'too many requests in a given amount of time'
+                ], 429);
             });
         });
 
