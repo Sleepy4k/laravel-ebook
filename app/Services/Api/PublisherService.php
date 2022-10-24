@@ -15,23 +15,13 @@ class PublisherService extends ApiService
         $students = $this->publisherInterface->all();
 
         if (count($students) > 0) {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => PublisherResource::collection($students)
-                ],
-                [
-                    route('api.siswa.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.index'), [
+                'data' => PublisherResource::collection($students)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang tersedia'
-                ],
-                [
-                    route('api.siswa.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.siswa.index'), [
+                'data' => 'Tidak ada data yang tersedia'
+            ], 202);
         }
     }
 
@@ -44,14 +34,9 @@ class PublisherService extends ApiService
     {
         $student = $this->publisherInterface->create($request);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new PublisherResource($student)
-            ],
-            [
-                route('api.siswa.store')
-            ]
-        );
+        return $this->createResponse('Data berhasil dibuat', route('api.siswa.store'), [
+            'data' => new PublisherResource($student)
+        ], 201);
     }
 
     /**
@@ -63,14 +48,9 @@ class PublisherService extends ApiService
     {
         $student = $this->publisherInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new PublisherResource($student)
-            ],
-            [
-                route('api.siswa.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.siswa.show', $id), [
+            'data' => new PublisherResource($student)
+        ], 206);
     }
 
     /**
@@ -86,23 +66,13 @@ class PublisherService extends ApiService
         if (!empty($request)) {
             $student = $this->publisherInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new PublisherResource($student)
-                ],
-                [
-                    route('api.siswa.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.siswa.update', $id), [
+                'data' => new PublisherResource($student)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang diubah'
-                ],
-                [
-                    route('api.siswa.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.siswa.update', $id), [
+                'data' => 'Tidak ada data yang diubah'
+            ], 202);
         }
     }
 
@@ -116,13 +86,8 @@ class PublisherService extends ApiService
         $this->publisherInterface->deleteById($id);
         $students = $this->publisherInterface->all();
 
-        return $this->createResponse(200, 'Data berhasil dihapus',
-            [
-                'data' => PublisherResource::collection($students)
-            ],
-            [
-                route('api.siswa.destroy', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil dihapus', route('api.siswa.destroy', $id), [
+            'data' => PublisherResource::collection($students)
+        ], 202);
     }
 }

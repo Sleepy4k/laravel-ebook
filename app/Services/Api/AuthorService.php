@@ -15,23 +15,13 @@ class AuthorService extends ApiService
         $authors = $this->authorInterface->all();
 
         if (count($authors) > 0) {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => AuthorResource::collection($authors)
-                ],
-                [
-                    route('api.author.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.author.index'), [
+                'data' => AuthorResource::collection($authors)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang tersedia'
-                ],
-                [
-                    route('api.author.index')
-                ]
-            );
+            return $this->createResponse('Data berhasil diterima', route('api.author.index'), [
+                'data' => 'Tidak ada data yang tersedia'
+            ], 202);
         }
     }
 
@@ -44,14 +34,9 @@ class AuthorService extends ApiService
     {
         $author = $this->authorInterface->create($request);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new AuthorResource($author)
-            ],
-            [
-                route('api.author.store')
-            ]
-        );
+        return $this->createResponse('Data berhasil dibuat', route('api.author.store'), [
+            'data' => new AuthorResource($author)
+        ], 201);
     }
 
     /**
@@ -63,14 +48,9 @@ class AuthorService extends ApiService
     {
         $author = $this->authorInterface->findById($id);
 
-        return $this->createResponse(200, 'Data berhasil diterima',
-            [
-                'data' => new AuthorResource($author)
-            ],
-            [
-                route('api.author.show', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil diterima', route('api.author.show', $id), [
+            'data' => new AuthorResource($author)
+        ], 206);
     }
 
     /**
@@ -86,23 +66,13 @@ class AuthorService extends ApiService
         if (!empty($request)) {
             $author = $this->authorInterface->findById($id);
 
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => new AuthorResource($author)
-                ],
-                [
-                    route('api.author.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.author.update', $id), [
+                'data' => new AuthorResource($author)
+            ], 202);
         } else {
-            return $this->createResponse(200, 'Data berhasil diterima',
-                [
-                    'data' => 'Tidak ada data yang diubah'
-                ],
-                [
-                    route('api.author.update', $id)
-                ]
-            );
+            return $this->createResponse('Data berhasil diubah', route('api.author.update', $id), [
+                'data' => 'Tidak ada data yang diubah'
+            ], 202);
         }
     }
 
@@ -116,13 +86,8 @@ class AuthorService extends ApiService
         $this->authorInterface->deleteById($id);
         $authors = $this->authorInterface->all();
 
-        return $this->createResponse(200, 'Data berhasil dihapus',
-            [
-                'data' => AuthorResource::collection($authors)
-            ],
-            [
-                route('api.author.destroy', $id)
-            ]
-        );
+        return $this->createResponse('Data berhasil dihapus', route('api.author.destroy', $id), [
+            'data' => AuthorResource::collection($authors)
+        ], 202);
     }
 }

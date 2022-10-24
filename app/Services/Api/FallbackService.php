@@ -11,13 +11,8 @@ class FallbackService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse(404, 'Resource API tidak ditemukan',
-            [
-                'error' => 'Route resource tidak ditemukan silahkan hubungi pihak pengembang'
-            ],
-            [
-                route('api.me.index')
-            ]
-        );
+        return $this->createResponse('Resource API tidak ditemukan', route('api.me.index'), [
+            'data' => 'Route resource tidak ditemukan silahkan hubungi pihak pengembang'
+        ], 404);
     }
 }
