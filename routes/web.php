@@ -27,10 +27,10 @@ Route::middleware('auth')->group(function() {
     Route::resource('book', Web\BookController::class);
 
     Route::prefix('table')->as('table.')->group(function() {
-        Route::resource('author', Web\BookController::class);
-        Route::resource('student', Web\BookController::class);
-        Route::resource('category', Web\BookController::class);
-        Route::resource('publisher', Web\BookController::class);
+        Route::resource('author', Web\AuthorController::class);
+        Route::resource('student', Web\StudentController::class);
+        Route::resource('category', Web\BookCategoryController::class);
+        Route::resource('publisher', Web\PublisherController::class);
     });
 
     Route::prefix('admin')->as('admin.')->group(function() {
