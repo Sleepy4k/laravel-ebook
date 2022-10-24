@@ -92,14 +92,9 @@ class UpdateRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $validator->errors()
-                ],
-                [
-                    route('api.book.index')
-                ]
-            )
+            $this->createResponse('Server Error', route('api.book.index'), [
+                'data' => $validator->errors()
+            ], 400)
         );
     }
 }

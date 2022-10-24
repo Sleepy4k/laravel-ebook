@@ -84,14 +84,9 @@ class StoreRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->createResponse(500, 'Server Error',
-                [
-                    'error' => $validator->errors()
-                ],
-                [
-                    route('api.author.index')
-                ]
-            )
+            $this->createResponse('Server Error', route('api.author.index'), [
+                'data' => $validator->errors()
+            ], 400)
         );
     }
 }
