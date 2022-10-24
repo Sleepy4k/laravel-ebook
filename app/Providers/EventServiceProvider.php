@@ -35,7 +35,7 @@ class EventServiceProvider extends ServiceProvider
         
         // Database Query
         Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-            Log::debug('query : '.$query->sql.' | time '.$query->time.' | connection '.$query->connection->getName());
+            Log::channel('query')->info('query : '.$query->sql.' | time '.$query->time.' | connection '.$query->connection->getName());
         });
     }
 
