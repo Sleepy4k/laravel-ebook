@@ -41,10 +41,10 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::prefix('audit')->as('audit.')->group(function() {
-        Route::resource('auth', Web\AuthController::class);
-        Route::resource('model', Web\ModelController::class);
-        Route::resource('query', Web\QueryController::class);
-        Route::resource('system', Web\SystemController::class);
+        Route::resource('auth', Web\AuthController::class, ['only' => ['index']]);
+        Route::resource('model', Web\ModelController::class, ['only' => ['index']]);
+        Route::resource('query', Web\QueryController::class, ['only' => ['index']]);
+        Route::resource('system', Web\SystemController::class, ['only' => ['index']]);
     });
 
     Route::prefix('profile')->as('profile.')->group(function() {
