@@ -6,7 +6,6 @@
     @endpush
 @endonce
 
-@section('page-title', 'Data Buku')
 @section('page-content')
     <form action="{{ route('book.update', $book->id) }}" method="POST">
         @csrf

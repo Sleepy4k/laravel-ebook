@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body py-4 px-4">
-        <h6>Selamat Datang kembali!</h6>
+        <h6>Selamat Datang !</h6>
         <div class="d-flex align-items-center">
             <div class="avatar avatar-xl">
                 <img src="assets/images/faces/1.jpg" alt="Face 1">

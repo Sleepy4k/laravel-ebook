@@ -6,7 +6,6 @@
     @endpush
 @endonce
 
-@section('page-title', 'Data Buku')
 @section('page-content')
     <form action="{{ route('book.store') }}" method="POST">
         @csrf
@@ -18,7 +17,7 @@
 
         <div class="form-group">
             <label for="deskripsi">Deskripsi</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Buku" value="{{ old('deskripsi') }}" required autofocus></textarea>
+            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Buku" required autofocus>{{ old('deskripsi') }}</textarea>
         </div>
 
         <div class="form-group">

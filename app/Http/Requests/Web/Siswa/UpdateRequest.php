@@ -34,13 +34,15 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255'],
-            'umur' => ['nullable','string','max:255'],
-            'kelamin' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['nullable', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['nullable','string','max:255'],
-            'alamat' => ['nullable','string'],
-            'kelas' => ['nullable','string','max:255']
+            'nama' => ['required','string','max:255'],
+            'umur' => ['required','string','max:255'],
+            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
+            'nomor_hp' => ['required','string','max:255'],
+            'alamat' => ['required','string'],
+            'kelas_tipe' => ['required','string','max:255'],
+            'kelas_jurusan' => ['required','string','max:255'],
+            'kelas_nomer' => ['required','string','max:255']
         ];
     }
 

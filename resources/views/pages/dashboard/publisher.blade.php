@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Buku'])
+@extends('layouts.dashboard', ['title' => 'Data Penerbit'])
 
 @once
     @push('addon-css')

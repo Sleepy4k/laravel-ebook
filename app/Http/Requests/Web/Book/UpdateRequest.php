@@ -34,13 +34,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => ['nullable','string','max:255','unique:books,judul'],
-            'deskripsi' => ['nullable','string'],
-            'author_id' => ['nullable','numeric'],
-            'publisher_id' => ['nullable','numeric'],
-            'category_id' => ['nullable','numeric'],
-            'tanggal_terbit' => ['nullable'],
-            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
+            'judul' => ['required','string','max:255','unique:books,judul'],
+            'deskripsi' => ['required','string'],
+            'author_id' => ['required','numeric'],
+            'publisher_id' => ['required','numeric'],
+            'category_id' => ['required','numeric'],
+            'tanggal_terbit' => ['required'],
+            'tersedia' => ['required','string','max:255',Rule::in(BookStatusEnum::$status)]
         ];
     }
 

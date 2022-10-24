@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\DataTables\BookDataTable;
-use App\Services\Web\BookService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Web\Book\StoreRequest;
-use App\Http\Requests\Web\Book\UpdateRequest;
+use App\Services\Web\StudentService;
+use App\DataTables\StudentDataTable;
+use App\Http\Requests\Web\Siswa\StoreRequest;
+use App\Http\Requests\Web\Siswa\UpdateRequest;
 
-class BookController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(BookService $service, BookDataTable $dataTable)
+    public function index(StudentService $service, StudentDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.book', $service->index());
+        return $dataTable->render('pages.dashboard.student', $service->index());
     }
 
     /**
@@ -25,9 +25,9 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(BookService $service)
+    public function create(StudentService $service)
     {
-        return view('partials.form.book.create', $service->create());
+        return view('partials.form.student.create', $service->create());
     }
 
     /**
@@ -36,11 +36,11 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, BookService $service)
+    public function store(StoreRequest $request, StudentService $service)
     {
         $service->store($request->validated());
     
-        return redirect(route('book.index'));
+        return redirect(route('table.student.index'));
     }
 
     /**
@@ -49,9 +49,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(BookService $service, $id)
+    public function show(StudentService $service, $id)
     {
-        return view('partials.form.book.show', $service->show($id));
+        return view('partials.form.student.show', $service->show($id));
     }
 
     /**
@@ -60,9 +60,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookService $service, $id)
+    public function edit(StudentService $service, $id)
     {
-        return view('partials.form.book.edit', $service->edit($id));
+        return view('partials.form.student.edit', $service->edit($id));
     }
 
     /**
@@ -72,11 +72,11 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, BookService $service, $id)
+    public function update(UpdateRequest $request, StudentService $service, $id)
     {
         $service->update($request->validated(), $id);
     
-        return redirect(route('book.index'));
+        return redirect(route('table.student.index'));
     }
 
     /**
@@ -85,7 +85,7 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookService $service, $id)
+    public function destroy(StudentService $service, $id)
     {
         $service->destroy($id);
 

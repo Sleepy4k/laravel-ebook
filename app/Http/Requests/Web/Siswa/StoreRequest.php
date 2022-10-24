@@ -40,7 +40,9 @@ class StoreRequest extends FormRequest
             'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
             'nomor_hp' => ['required','string','max:255'],
             'alamat' => ['required','string'],
-            'kelas' => ['required','string','max:255']
+            'kelas_tipe' => ['required','string','max:255'],
+            'kelas_jurusan' => ['required','string','max:255'],
+            'kelas_nomer' => ['required','string','max:255']
         ];
     }
 
