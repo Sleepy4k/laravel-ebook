@@ -51,7 +51,7 @@ class QueryDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(0, 'asc')
+                    ->orderBy(0, 'desc')
                     ->lengthChange(true)
                     ->lengthMenu()
                     ->pageLength(10)
