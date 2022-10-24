@@ -1,6 +1,5 @@
 @extends('layouts.dashboard', ['title' => 'Dashboard'])
 
-@section('page-title', 'Dashboard')
 @section('page-content')
     <div class="col-12 col-lg-9">
         @includeIf('partials.body.main.box')

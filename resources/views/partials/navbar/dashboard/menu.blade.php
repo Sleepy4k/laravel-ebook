@@ -28,18 +28,18 @@
                     <div class="submenu-group-wrapper">
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Penulis</a>
+                                <a href="{{ route('table.author.index') }}" class='submenu-link'>Penulis</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Penerbit</a>
+                                <a href="{{ route('table.publisher.index') }}" class='submenu-link'>Penerbit</a>
                             </li>
                         </ul>
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Siswa</a>
+                                <a href="{{ route('table.student.index') }}" class='submenu-link'>Siswa</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Kategori Buku</a>
+                                <a href="{{ route('table.category.index') }}" class='submenu-link'>Kategori Buku</a>
                             </li>
                         </ul>
                     </div>
@@ -56,18 +56,18 @@
                     <div class="submenu-group-wrapper">
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Akun</a>
+                                <a href="{{ route('admin.user.index') }}" class='submenu-link'>Akun</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Role</a>
+                                <a href="{{ route('admin.role.index') }}" class='submenu-link'>Role</a>
                             </li>
                         </ul>
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Bahasa</a>
+                                <a href="{{ route('admin.translate.index') }}" class='submenu-link'>Bahasa</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Aplikasi</a>
+                                <a href="{{ route('admin.application.index') }}" class='submenu-link'>Aplikasi</a>
                             </li>
                         </ul>
                     </div>
@@ -84,18 +84,18 @@
                     <div class="submenu-group-wrapper">
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Auth</a>
+                                <a href="{{ route('audit.auth.index') }}" class='submenu-link'>Auth</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>System</a>
+                                <a href="{{ route('audit.system.index') }}" class='submenu-link'>System</a>
                             </li>
                         </ul>
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Model</a>
+                                <a href="{{ route('audit.model.index') }}" class='submenu-link'>Model</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Query</a>
+                                <a href="{{ route('audit.query.index') }}" class='submenu-link'>Query</a>
                             </li>
                         </ul>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="submenu-group-wrapper">
                         <ul class="submenu-group">
                             <li class="submenu-item">
-                                <a href="#" class='submenu-link'>Akun Saya</a>
+                                <a href="{{ route('profile.account.index') }}" class='submenu-link'>Akun Saya</a>
                             </li>
                             <li class="submenu-item">
                                 <a class="submenu-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
