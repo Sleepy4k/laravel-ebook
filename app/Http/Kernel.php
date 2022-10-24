@@ -25,7 +25,7 @@ class Kernel extends HttpKernel
         /*
         * More info please go to "https://codebrisk.com/blog/optimize-your-site-automatically-with-laravel-page-speed"
         */
-        \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
+        // \RenatoMarinho\LaravelPageSpeed\Middleware\InlineCss::class,
         \RenatoMarinho\LaravelPageSpeed\Middleware\ElideAttributes::class,
         \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
         \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
