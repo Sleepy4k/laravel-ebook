@@ -59,6 +59,7 @@ class RoleDataTable extends DataTable
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('reload'),
                         Button::make('copy')
                     );

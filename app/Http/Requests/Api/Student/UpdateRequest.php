@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Siswa;
+namespace App\Http\Requests\Api\Student;
 
 use App\Enums\GenderEnum;
 use App\Traits\ApiRespons;
@@ -38,13 +38,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255'],
-            'umur' => ['nullable','string','max:255'],
-            'kelamin' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['nullable', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['nullable','string','max:255'],
-            'alamat' => ['nullable','string'],
-            'kelas' => ['nullable','string','max:255']
+            'name' => ['nullable','string','max:255'],
+            'age' => ['nullable','string','max:255'],
+            'gender' => ['nullable','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['nullable', 'string','max:255','email:dns','unique:students,email'],
+            'phone' => ['nullable','string','max:255'],
+            'address' => ['nullable','string'],
+            'grade' => ['nullable','string','max:255']
         ];
     }
 
@@ -56,7 +56,7 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            'gender' => 'Data `gender` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 
@@ -92,7 +92,7 @@ class UpdateRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->createResponse('Server Error', route('api.siswa.index'), [
+            $this->createResponse('Server Error', route('api.student.index'), [
                 'data' => $validator->errors()
             ], 400)
         );

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Siswa;
+use App\Models\Student;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -24,11 +24,11 @@ class StudentDataTable extends DataTable
             ->addColumn('action', function($query){
                 return '<a href="'.route("table.student.show", $query->id).'"><i class="fa-solid fa-eye"></i></a> | <a href="'.route('table.student.edit', $query->id).'"><i class="fa-solid fa-pen-to-square"></i></a> | <form action="'.route("table.student.destroy", $query->id).'" method="post" style="display: inline-block">'.csrf_field().method_field("DELETE").'<a href="" class="confirm-delete"><i class="fa-solid fa-trash"></i></a></form>';
             })
-            ->editColumn('umur', function($query){
-                return $query->umur . ' Tahun';
+            ->editColumn('age', function($query){
+                return $query->age . ' Tahun';
             })
-            ->editColumn('kelamin', function($query){
-                return ucfirst($query->kelamin);
+            ->editColumn('gender', function($query){
+                return ucfirst($query->gender);
             })
             ->setRowId('id');
     }
@@ -36,10 +36,10 @@ class StudentDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Siswa $model
+     * @param \App\Models\Student $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Siswa $model): QueryBuilder
+    public function query(Student $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -65,6 +65,7 @@ class StudentDataTable extends DataTable
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('reload'),
                         Button::make('copy')
                     );
@@ -79,21 +80,21 @@ class StudentDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('nama')
+            Column::make('name')
                     ->title('Nama')
                     ->addClass('text-center'),
-            Column::make('umur')
+            Column::make('age')
                     ->hidden(),
-            Column::make('kelamin')
+            Column::make('gender')
                     ->title('Jenis Kelamin')
                     ->addClass('text-center'),
             Column::make('email')
                     ->hidden(),
-            Column::make('nomor_hp')
+            Column::make('phone')
                     ->hidden(),
-            Column::make('alamat')
+            Column::make('address')
                     ->hidden(),
-            Column::make('kelas')
+            Column::make('grade')
                     ->title('Kelas')
                     ->addClass('text-center'),
             Column::make('action')

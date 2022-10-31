@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Buku'])
+@extends('layouts.dashboard')
 
 @once
     @push('addon-css')
@@ -11,20 +11,20 @@
         @csrf
 
         <div class="form-group">
-            <label for="judul">Judul</label>
-            <input type="text" id="judul" name="judul" class="form-control" placeholder="Judul Buku" value="{{ old('judul') }}" required autofocus>
+            <label for="title">Judul</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Judul Buku" value="{{ old('title') }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="deskripsi">Deskripsi</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Buku" required autofocus>{{ old('deskripsi') }}</textarea>
+            <label for="description">Deskripsi</label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Deskripsi Buku" required autofocus>{{ old('description') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="author_id">Penulis</label>
             <select id="author_id" class="choices form-select" name="author_id" required autofocus>
                 @foreach ($authors as $author)
-                    <option value="{{ $author->id }}">{{ $author->nama }}</option>
+                    <option value="{{ $author->id }}">{{ $author->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -33,7 +33,7 @@
             <label for="publisher_id">Penerbit</label>
             <select id="publisher_id" class="choices form-select" name="publisher_id" required autofocus>
                 @foreach ($publishers as $publisher)
-                    <option value="{{ $publisher->id }}">{{ $publisher->nama }}</option>
+                    <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -42,14 +42,14 @@
             <label for="category_id">Kategori</label>
             <select id="category_id" class="choices form-select" name="category_id" required autofocus>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
-            <label for="tanggal_terbit">Tanggal Terbit Buku</label>
-            <input type="date" id="tanggal_terbit" name="tanggal_terbit" class="form-control" required autofocus>
+            <label for="date_of_issue">Tanggal Terbit Buku</label>
+            <input type="date" id="date_of_issue" name="date_of_issue" class="form-control" required autofocus>
             <p><small class="text-muted">Format harus berupa Bulan/Tanggal/Tahun</small></p>
         </div>
 

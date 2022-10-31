@@ -14,7 +14,7 @@
                                     <use
                                         xlink:href="assets/images/bootstrap-icons.svg#circle-fill" />
                                 </svg>
-                                <h5 class="mb-0 ms-3">{{ $category->nama }}</h5>
+                                <h5 class="mb-0 ms-3">{{ $category->name }}</h5>
                             </div>
                         </div>
                         <div class="col-2">

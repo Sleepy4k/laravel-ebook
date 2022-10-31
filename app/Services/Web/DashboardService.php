@@ -12,13 +12,13 @@ class DashboardService extends Service
     public function index()
     {
         return [
-            'books' => $this->bookInterface->all(['*'], ['author'], [], 'tanggal_terbit'),
+            'books' => $this->bookInterface->all(['*'], ['author'], [], 'date_of_issue'),
             'authors' => $this->authorInterface->all(['id'])->count(),
-            'students' => $this->siswaInterface->all(['id'])->count(),
+            'students' => $this->studentInterface->all(['id'])->count(),
             'publisher' => $this->publisherInterface->all(['id'])->count(),
             'bookCategory' => $this->bookCategoryInterface->paginate(5, ['*'], ['books']),
 
-            'total_book' => $this->getTableData('books', 'tanggal_terbit')
+            'total_book' => $this->getTableData('books', 'date_of_issue')
         ];
     }
 }

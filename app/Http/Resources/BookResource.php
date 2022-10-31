@@ -17,19 +17,19 @@ class BookResource extends JsonResource
      */
     public function toArray($request)
     {
-        $this->author_id = Author::find($this->author_id)->nama;
-        $this->publisher_id = Publisher::find($this->publisher_id)->nama;
-        $this->category_id = BookCategory::find($this->category_id)->nama;
+        $this->author_id = Author::find($this->author_id)->name;
+        $this->publisher_id = Publisher::find($this->publisher_id)->name;
+        $this->category_id = BookCategory::find($this->category_id)->name;
 
         return [
             'ID' => $this->id,
-            'Judul' => $this->judul,
-            'Deskripsi' => $this->deskripsi,
+            'Judul' => $this->title,
+            'Deskripsi' => $this->description,
             'Penulis' => $this->author_id,
             'Penerbit' => $this->publisher_id,
             'Kategori' => $this->category_id,
-            'Tanggal Terbit' => $this->tanggal_terbit,
-            'Status' => ($this->tersedia == 'Y') ? 'Tersedia' : 'Tidak Tersedia'
+            'Tanggal Terbit' => $this->date_of_issue,
+            'Status' => ($this->available == 'Y') ? 'Tersedia' : 'Tidak Tersedia'
         ];
     }
 }

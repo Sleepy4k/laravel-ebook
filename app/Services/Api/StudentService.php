@@ -3,20 +3,20 @@
 namespace App\Services\Api;
 
 use App\Services\ApiService;
-use App\Http\Resources\PublisherResource;
+use App\Http\Resources\StudentResource;
 
-class PublisherService extends ApiService
+class StudentService extends ApiService
 {
     /**
      * Index function.
      */
     public function index()
     {
-        $students = $this->publisherInterface->all();
+        $students = $this->studentInterface->all();
 
         if (count($students) > 0) {
             return $this->createResponse('Data berhasil diterima', route('api.student.index'), [
-                'data' => PublisherResource::collection($students)
+                'data' => StudentResource::collection($students)
             ], 202);
         } else {
             return $this->createResponse('Data berhasil diterima', route('api.student.index'), [
@@ -32,10 +32,10 @@ class PublisherService extends ApiService
      */
     public function store($request)
     {
-        $student = $this->publisherInterface->create($request);
+        $student = $this->studentInterface->create($request);
 
         return $this->createResponse('Data berhasil dibuat', route('api.student.store'), [
-            'data' => new PublisherResource($student)
+            'data' => new StudentResource($student)
         ], 201);
     }
 
@@ -46,10 +46,10 @@ class PublisherService extends ApiService
      */
     public function show($id)
     {
-        $student = $this->publisherInterface->findById($id);
+        $student = $this->studentInterface->findById($id);
 
         return $this->createResponse('Data berhasil diterima', route('api.student.show', $id), [
-            'data' => new PublisherResource($student)
+            'data' => new StudentResource($student)
         ], 206);
     }
 
@@ -61,16 +61,16 @@ class PublisherService extends ApiService
      */
     public function update($request, $id)
     {
-        $this->publisherInterface->update(intval($id), $request);
+        $this->studentInterface->update(intval($id), $request);
 
         if (!empty($request)) {
-            $student = $this->publisherInterface->findById($id);
+            $student = $this->studentInterface->findById($id);
 
-            return $this->createResponse('Data berhasil diubah', route('api.student.update', $id), [
-                'data' => new PublisherResource($student)
+            return $this->createResponse('Data berhasil diterima', route('api.student.update', $id), [
+                'data' => new StudentResource($student)
             ], 202);
         } else {
-            return $this->createResponse('Data berhasil diubah', route('api.student.update', $id), [
+            return $this->createResponse('Data berhasil diterima', route('api.student.update', $id), [
                 'data' => 'Tidak ada data yang diubah'
             ], 202);
         }
@@ -83,11 +83,11 @@ class PublisherService extends ApiService
      */
     public function destroy($id)
     {
-        $this->publisherInterface->deleteById($id);
-        $students = $this->publisherInterface->all();
+        $this->studentInterface->deleteById($id);
+        $students = $this->studentInterface->all();
 
         return $this->createResponse('Data berhasil dihapus', route('api.student.destroy', $id), [
-            'data' => PublisherResource::collection($students)
+            'data' => StudentResource::collection($students)
         ], 202);
     }
 }

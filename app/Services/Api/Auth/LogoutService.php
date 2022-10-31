@@ -20,6 +20,6 @@ class LogoutService extends ApiService
 
         return $this->createResponse('Logout berhasil', route('api.logout.store'), [
             'data' => new UserResource($user)
-        ]);
+        ], 202);
     }
 }

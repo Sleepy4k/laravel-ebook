@@ -36,7 +36,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['nullable','string','max:255']
+            'name' => ['nullable','string','max:255']
         ];
     }
 

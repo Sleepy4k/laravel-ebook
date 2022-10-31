@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Siswa'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form action="{{ route('table.student.update', $student->id) }}" method="POST">
@@ -6,20 +6,20 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Siswa" value="{{ old('nama', $student->nama) }}" required autofocus>
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama Siswa" value="{{ old('name', $student->name) }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="umur">Umur</label>
-            <input type="number" id="umur" name="umur" class="form-control" placeholder="Umur Siswa" value="{{ old('umur', $student->umur) }}" required autofocus>
+            <label for="age">Umur</label>
+            <input type="number" id="age" name="age" class="form-control" placeholder="Umur Siswa" value="{{ old('age', $student->age) }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="kelamin">Jenis Kelamin</label>
-            <select id="kelamin" name="kelamin" class="form-select" required autofocus>
-                <option value="putra" {{ ($student->kelamin == 'putra') ? 'selected' : ''}}>Putra</option>
-                <option value="putri" {{ ($student->kelamin == 'putri') ? 'selected' : ''}}>Putri</option>
+            <label for="gender">Jenis Kelamin</label>
+            <select id="gender" name="gender" class="form-select" required autofocus>
+                <option value="putra" {{ ($student->gender == 'putra') ? 'selected' : ''}}>Putra</option>
+                <option value="putri" {{ ($student->gender == 'putri') ? 'selected' : ''}}>Putri</option>
             </select>
         </div>
 
@@ -29,36 +29,36 @@
         </div>
 
         <div class="form-group">
-            <label for="nomor_hp">Nomor Handphone</label>
-            <input type="tel" id="nomor_hp" name="nomor_hp" class="form-control" placeholder="Nomor Handphone Siswa" value="{{ old('nomor_hp', $student->nomor_hp) }}" required autofocus>
+            <label for="phone">Nomor Handphone</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Nomor Handphone Siswa" value="{{ old('phone', $student->phone) }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="alamat">Alamat</label>
-            <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Alamat Siswa" required autofocus>{{ old('alamat', $student->alamat) }}</textarea>
+            <label for="address">Alamat</label>
+            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Alamat Siswa" required autofocus>{{ old('address', $student->address) }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="kelas">Kelas</label>
             <div class="row" id="kelas">
                 <div class="col-md-2">
-                    <select name="kelas_tipe" class="form-select" required autofocus>
-                        <option value="X" {{ (explode(" ", $student->kelas)[0] == 'X') ? 'selected' : ''}}>X</option>
-                        <option value="XI" {{ (explode(" ", $student->kelas)[0] == 'XI') ? 'selected' : ''}}>XI</option>
-                        <option value="XII" {{ (explode(" ", $student->kelas)[0] == 'XII') ? 'selected' : ''}}>XII</option>
+                    <select name="grade_type" class="form-select" required autofocus>
+                        <option value="X" {{ (explode(" ", $student->grade)[0] == 'X') ? 'selected' : ''}}>X</option>
+                        <option value="XI" {{ (explode(" ", $student->grade)[0] == 'XI') ? 'selected' : ''}}>XI</option>
+                        <option value="XII" {{ (explode(" ", $student->grade)[0] == 'XII') ? 'selected' : ''}}>XII</option>
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select name="kelas_jurusan" class="form-select" required autofocus>
-                        <option value="RPL" {{ (explode(" ", $student->kelas)[1] == 'RPL') ? 'selected' : ''}}>RPL</option>
-                        <option value="TJA" {{ (explode(" ", $student->kelas)[1] == 'TJA') ? 'selected' : ''}}>TJA</option>
-                        <option value="TKJ" {{ (explode(" ", $student->kelas)[1] == 'TKJ') ? 'selected' : ''}}>TKJ</option>
+                    <select name="grade_mayor" class="form-select" required autofocus>
+                        <option value="RPL" {{ (explode(" ", $student->grade)[1] == 'RPL') ? 'selected' : ''}}>RPL</option>
+                        <option value="TJA" {{ (explode(" ", $student->grade)[1] == 'TJA') ? 'selected' : ''}}>TJA</option>
+                        <option value="TKJ" {{ (explode(" ", $student->grade)[1] == 'TKJ') ? 'selected' : ''}}>TKJ</option>
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select name="kelas_nomer" class="form-select" required autofocus>
+                    <select name="grade_number" class="form-select" required autofocus>
                         @for ($i = 1; $i < 10; $i++)
-                            <option value="{{ $i }}" {{ (explode(" ", $student->kelas)[2] == $i) ? 'selected' : ''}}>{{ $i }}</option>
+                            <option value="{{ $i }}" {{ (explode(" ", $student->grade)[2] == $i) ? 'selected' : ''}}>{{ $i }}</option>
                         @endfor
                     </select>
                 </div>

@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Api\Siswa;
+namespace App\Http\Requests\Web\Student;
 
 use App\Enums\GenderEnum;
-use App\Traits\ApiRespons;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreRequest extends FormRequest
 {
-    use ApiRespons;
-
     /**
      * Indicates if the validator should stop on the first rule failure.
      *
@@ -27,7 +23,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth('sanctum')->check();
+        return true;
     }
 
     /**
@@ -38,13 +34,15 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255'],
-            'umur' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['required','string','max:255'],
-            'alamat' => ['required','string'],
-            'kelas' => ['required','string','max:255']
+            'name' => ['required','string','max:255'],
+            'age' => ['required','string','max:255'],
+            'gender' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string','max:255','email:dns','unique:students,email'],
+            'phone' => ['required','string','max:255'],
+            'address' => ['required','string'],
+            'grade_type' => ['required','string','max:255'],
+            'grade_mayor' => ['required','string','max:255'],
+            'grade_number' => ['required','string','max:255']
         ];
     }
 
@@ -56,7 +54,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            'gender' => 'Data `gender` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 
@@ -83,18 +81,20 @@ class StoreRequest extends FormRequest
             // 
         ]);
     }
-
+    
     /**
-     * Custom error message for validation
+     * Custom error response for validation.
      *
      * @return array
      */
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            $this->createResponse('Server Error', route('api.siswa.index'), [
-                'data' => $validator->errors()
-            ], 400)
-        );
+        $toast = toastr();
+
+        foreach ($validator->messages()->all() as $message) {
+            $toast->error($message, 'Validation');
+        }
+
+        return $toast;
     }
 }

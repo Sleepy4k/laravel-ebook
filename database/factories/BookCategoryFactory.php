@@ -17,7 +17,7 @@ class BookCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => fake()->name
+            'name' => fake()->name
         ];
     }
 }

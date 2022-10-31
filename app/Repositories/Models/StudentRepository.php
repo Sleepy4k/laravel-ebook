@@ -2,12 +2,12 @@
 
 namespace App\Repositories\Models;
 
-use App\Models\Siswa;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
-use App\Contracts\Models\SiswaInterface;
 use App\Repositories\EloquentRepository;
+use App\Contracts\Models\StudentInterface;
 
-class SiswaRepository extends EloquentRepository implements SiswaInterface
+class StudentRepository extends EloquentRepository implements StudentInterface
 {
     /**
      * @var Model
@@ -19,7 +19,7 @@ class SiswaRepository extends EloquentRepository implements SiswaInterface
      * 
      * @param Model $model
      */
-    public function __construct(Siswa $model)
+    public function __construct(Student $model)
     {
         $this->model = $model;
     }

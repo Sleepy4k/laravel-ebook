@@ -24,7 +24,7 @@ class BookCategoryService extends Service
     public function create()
     {
         return [
-            'bookCategories' => $this->bookCategoryInterface->all(['id', 'nama'])
+            'bookCategories' => $this->bookCategoryInterface->all(['id', 'name'])
         ];
     }
 
@@ -49,7 +49,7 @@ class BookCategoryService extends Service
     public function show($id)
     {
         return [
-            'bookCategory' => $this->bookCategoryInterface->findById($id, ['id', 'nama'])
+            'bookCategory' => $this->bookCategoryInterface->findById($id, ['id', 'name'])
         ];
     }
 
@@ -62,7 +62,7 @@ class BookCategoryService extends Service
     public function edit($id)
     {
         return [
-            'bookCategory' => $this->bookCategoryInterface->findById($id, ['id', 'nama'])
+            'bookCategory' => $this->bookCategoryInterface->findById($id, ['id', 'name'])
         ];
     }
 

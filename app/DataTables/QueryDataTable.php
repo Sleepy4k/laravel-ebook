@@ -59,6 +59,7 @@ class QueryDataTable extends DataTable
                     ->autoWidth(true)
                     ->buttons(
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('copy')
                     );
     }

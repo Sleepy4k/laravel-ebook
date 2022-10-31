@@ -25,19 +25,19 @@ class BookDataTable extends DataTable
                 return '<a href="'.route("book.show", $query->id).'"><i class="fa-solid fa-eye"></i></a> | <a href="'.route('book.edit', $query->id).'"><i class="fa-solid fa-pen-to-square"></i></a> | <form action="'.route("book.destroy", $query->id).'" method="post" style="display: inline-block">'.csrf_field().method_field("DELETE").'<a href="" class="confirm-delete"><i class="fa-solid fa-trash"></i></a></form>';
             })
             ->editColumn('author_id', function($query){
-                return $query->author->nama;
+                return $query->author->name;
             })
             ->editColumn('publisher_id', function($query){
-                return $query->publisher->nama;
+                return $query->publisher->name;
             })
             ->editColumn('category_id', function($query){
-                return $query->category->nama;
+                return $query->category->name;
             })
-            ->editColumn('tanggal_terbit', function($query){
-                return $query->tanggal_terbit->format('d-m-Y');
+            ->editColumn('date_of_issue', function($query){
+                return $query->date_of_issue->format('d-m-Y');
             })
-            ->editColumn('tersedia', function($query){
-                return ($query->tersedia == 'Y') ? 'Tersedia' : 'Tidak Tersedia';
+            ->editColumn('available', function($query){
+                return ($query->available == 'Y') ? 'Tersedia' : 'Tidak Tersedia';
             })
             ->setRowId('id');
     }
@@ -74,6 +74,7 @@ class BookDataTable extends DataTable
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('reload'),
                         Button::make('copy')
                     );
@@ -88,10 +89,10 @@ class BookDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('judul')
+            Column::make('title')
                     ->title('Judul')
                     ->addClass('text-center'),
-            Column::make('deskripsi')
+            Column::make('description')
                     ->hidden(),
             Column::make('author_id')
                     ->title('Penulis')
@@ -102,10 +103,10 @@ class BookDataTable extends DataTable
             Column::make('category_id')
                     ->title('Kategori')
                     ->addClass('text-center'),
-            Column::make('tanggal_terbit')
+            Column::make('date_of_issue')
                     ->title('Tanggal Terbit')
                     ->addClass('text-center'),
-            Column::make('tersedia')
+            Column::make('available')
                     ->title('Status')
                     ->addClass('text-center'),
             Column::make('action')

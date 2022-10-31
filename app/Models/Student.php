@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Siswa extends Model
+class Student extends Model
 {
     use HasFactory, LogsActivity;
 
@@ -37,7 +37,7 @@ class Siswa extends Model
      *
      * @var string
      */
-    protected $table = 'siswas';
+    protected $table = 'students';
 
     /**
      * The primary key associated with the table.
@@ -112,10 +112,10 @@ class Siswa extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama', 'umur', 'kelamin', 'email', 'nomor_hp', 'alamat', 'kelas'])
+                            ->logOnly(['name', 'age', 'gender', 'email', 'phone', 'address', 'grade'])
                             ->logOnlyDirty()
-                            ->useLogName('Siswa')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model Siswa successfully {$eventName}")
+                            ->useLogName('Student')
+                            ->setDescriptionForEvent(fn(string $eventName) => "model Student successfully {$eventName}")
                             ->dontSubmitEmptyLogs();
     }
 }

@@ -16,7 +16,7 @@ class PublisherResource extends JsonResource
     {
         return [
             'ID' => $this->id,
-            'Nama' => $this->nama
+            'Nama' => $this->name
         ];
     }
 }

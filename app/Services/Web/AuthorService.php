@@ -24,7 +24,7 @@ class AuthorService extends Service
     public function create()
     {
         return [
-            'authors' => $this->authorInterface->all(['id', 'nama'])
+            'authors' => $this->authorInterface->all(['id', 'name'])
         ];
     }
 
@@ -49,7 +49,7 @@ class AuthorService extends Service
     public function show($id)
     {
         return [
-            'author' => $this->authorInterface->findById($id, ['id', 'nama'])
+            'author' => $this->authorInterface->findById($id, ['id', 'name'])
         ];
     }
 
@@ -62,7 +62,7 @@ class AuthorService extends Service
     public function edit($id)
     {
         return [
-            'author' => $this->authorInterface->findById($id, ['id', 'nama'])
+            'author' => $this->authorInterface->findById($id, ['id', 'name'])
         ];
     }
 

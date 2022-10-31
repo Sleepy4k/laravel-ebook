@@ -99,6 +99,7 @@ class AuthDataTable extends DataTable
                     ->searching(false)
                     ->buttons(
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('reload'),
                         Button::make('copy')
                     );

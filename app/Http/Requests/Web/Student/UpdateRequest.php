@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Web\Siswa;
+namespace App\Http\Requests\Web\Student;
 
 use App\Enums\GenderEnum;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Indicates if the validator should stop on the first rule failure.
@@ -34,15 +34,15 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255'],
-            'umur' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['required','string','max:255'],
-            'alamat' => ['required','string'],
-            'kelas_tipe' => ['required','string','max:255'],
-            'kelas_jurusan' => ['required','string','max:255'],
-            'kelas_nomer' => ['required','string','max:255']
+            'name' => ['required','string','max:255'],
+            'age' => ['required','string','max:255'],
+            'grade' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string','max:255','email:dns','unique:students,email'],
+            'phone' => ['required','string','max:255'],
+            'address' => ['required','string'],
+            'grade_type' => ['required','string','max:255'],
+            'grade_mayor' => ['required','string','max:255'],
+            'grade_number' => ['required','string','max:255']
         ];
     }
 
@@ -54,7 +54,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            'gender' => 'Data `gender` tidak valid, data harus bernilai putra atau putri'
         ];
     }
 

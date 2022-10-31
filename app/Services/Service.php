@@ -20,9 +20,9 @@ class Service
     protected $userInterface;
 
     /**
-     * @var siswaInterface
+     * @var studentInterface
      */
-    protected $siswaInterface;
+    protected $studentInterface;
 
     /**
      * @var auditInterface
@@ -52,16 +52,16 @@ class Service
     public function __construct(
         Models\BookInterface $bookInterface,
         Models\UserInterface $userInterface,
-        Models\SiswaInterface $siswaInterface,
         Models\AuditInterface $auditInterface,
         Models\AuthorInterface $authorInterface,
+        Models\StudentInterface $studentInterface,
         Models\PublisherInterface $publisherInterface,
         Models\BookCategoryInterface $bookCategoryInterface
     )
     {
         $this->bookInterface = $bookInterface;
         $this->userInterface = $userInterface;
-        $this->siswaInterface = $siswaInterface;
+        $this->studentInterface = $studentInterface;
         $this->auditInterface = $auditInterface;
         $this->authorInterface = $authorInterface;
         $this->publisherInterface = $publisherInterface;

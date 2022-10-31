@@ -19,7 +19,7 @@ class LoginService extends Service
             $user = request()->user();
             
             $properties = [
-                'nama' => $user->nama,
+                'name' => $user->name,
                 'username' => $user->username
             ];
 

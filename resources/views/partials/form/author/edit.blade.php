@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Penulis'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form action="{{ route('table.author.update', $author->id) }}" method="POST">
@@ -6,8 +6,8 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Buku" value="{{ old('nama', $author->nama) }}" required autofocus>
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama Buku" value="{{ old('name', $author->name) }}" required autofocus>
         </div>
 
         <div class="row">
