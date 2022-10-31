@@ -4,4 +4,4 @@ namespace App\Contracts\Models;
 
 use App\Contracts\EloquentInterface;
 
-interface SiswaInterface extends EloquentInterface {}
+interface StudentInterface extends EloquentInterface {}
