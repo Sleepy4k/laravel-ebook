@@ -1,4 +1,4 @@
-@extends('layouts.auth', ['title' => 'Login'])
+@extends('layouts.auth')
 
 @section('page-title', 'Log in.')
 @section('page-description', 'Log in with your data that you entered during registration.')

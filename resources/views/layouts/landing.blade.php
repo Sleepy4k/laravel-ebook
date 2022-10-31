@@ -3,7 +3,7 @@
     <head>
         @includeIf('partials.head.meta')
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ basename(request()->path()) ? ucfirst(basename(request()->path())) . ' |' : '' }} {{ config('app.name') }}</title>
 
         @includeIf('partials.head.icon')
         @includeIf('partials.head.landing.css')
