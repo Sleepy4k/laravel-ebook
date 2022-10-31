@@ -10,7 +10,7 @@
                 <img src="{{ asset('assets/images/faces/1.jpg') }}" alt="Avatar">
             </div>
             <div class="text">
-                <h6 class="user-dropdown-name">{{ request()->user()->nama }}</h6>
+                <h6 class="user-dropdown-name">{{ request()->user()->name }}</h6>
                 <p class="user-dropdown-status text-sm text-muted">@ {{ request()->user()->username }}</p>
             </div>
             <a href="#" class="burger-btn d-block d-xl-none">
