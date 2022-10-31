@@ -18,7 +18,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if ($request->expectsJson()) {
-            $this->createResponse('Unauthenticated Access', $request->url(), [
+            return $this->createResponse('Unauthenticated Access', $request->url(), [
                 'data' => 'Please authenticate your self as an user'
             ], 401);
         } else {
