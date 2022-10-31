@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Http\Requests\Web\Siswa;
+namespace App\Http\Requests\Api\Student;
 
 use App\Enums\GenderEnum;
+use App\Traits\ApiRespons;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
+    use ApiRespons;
+
     /**
      * Indicates if the validator should stop on the first rule failure.
      *
@@ -23,7 +27,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth('sanctum')->check();
     }
 
     /**
@@ -34,15 +38,13 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255'],
-            'umur' => ['required','string','max:255'],
-            'kelamin' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
-            'email' => ['required', 'string','max:255','email:dns','unique:siswas,email'],
-            'nomor_hp' => ['required','string','max:255'],
-            'alamat' => ['required','string'],
-            'kelas_tipe' => ['required','string','max:255'],
-            'kelas_jurusan' => ['required','string','max:255'],
-            'kelas_nomer' => ['required','string','max:255']
+            'name' => ['required','string','max:255'],
+            'age' => ['required','string','max:255'],
+            'gender' => ['required','string','max:255',Rule::in(GenderEnum::$gender)],
+            'email' => ['required', 'string','max:255','email:dns','unique:students,email'],
+            'phone' => ['required','string','max:255'],
+            'address' => ['required','string'],
+            'grade' => ['required','string','max:255']
         ];
     }
 
@@ -81,20 +83,18 @@ class UpdateRequest extends FormRequest
             // 
         ]);
     }
-    
+
     /**
-     * Custom error response for validation.
+     * Custom error message for validation
      *
      * @return array
      */
     public function failedValidation(Validator $validator)
     {
-        $toast = toastr();
-
-        foreach ($validator->messages()->all() as $message) {
-            $toast->error($message, 'Validation');
-        }
-
-        return $toast;
+        throw new HttpResponseException(
+            $this->createResponse('Server Error', route('api.student.index'), [
+                'data' => $validator->errors()
+            ], 400)
+        );
     }
 }

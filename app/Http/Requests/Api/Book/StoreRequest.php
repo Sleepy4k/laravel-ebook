@@ -38,13 +38,13 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => ['required','string','max:255','unique:books,judul'],
-            'deskripsi' => ['required','string'],
+            'title' => ['required','string','max:255','unique:books,title'],
+            'description' => ['required','string'],
             'author_id' => ['required','numeric'],
             'publisher_id' => ['required','numeric'],
             'category_id' => ['required','numeric'],
-            'tanggal_terbit' => ['required','date_format:d-m-Y'],
-            'tersedia' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
+            'date_of_issue' => ['required','date_format:d-m-Y'],
+            'available' => ['nullable','string','max:255',Rule::in(BookStatusEnum::$status)]
         ];
     }
 
