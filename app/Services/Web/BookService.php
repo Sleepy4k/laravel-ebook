@@ -24,9 +24,9 @@ class BookService extends Service
     public function create()
     {
         return [
-            'authors' => $this->authorInterface->all(['id', 'nama']),
-            'publishers' => $this->publisherInterface->all(['id', 'nama']),
-            'categories' => $this->bookCategoryInterface->all(['id', 'nama'])
+            'authors' => $this->authorInterface->all(['id', 'name']),
+            'publishers' => $this->publisherInterface->all(['id', 'name']),
+            'categories' => $this->bookCategoryInterface->all(['id', 'name'])
         ];
     }
 
@@ -65,9 +65,9 @@ class BookService extends Service
     {
         return [
             'book' => $this->bookInterface->findById($id),
-            'authors' => $this->authorInterface->all(['id', 'nama']),
-            'publishers' => $this->publisherInterface->all(['id', 'nama']),
-            'categories' => $this->bookCategoryInterface->all(['id', 'nama'])
+            'authors' => $this->authorInterface->all(['id', 'name']),
+            'publishers' => $this->publisherInterface->all(['id', 'name']),
+            'categories' => $this->bookCategoryInterface->all(['id', 'name'])
         ];
     }
 

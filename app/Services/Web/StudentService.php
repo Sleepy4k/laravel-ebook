@@ -24,7 +24,7 @@ class StudentService extends Service
     public function create()
     {
         return [
-            'students' => $this->siswaInterface->all()
+            'students' => $this->studentInterface->all()
         ];
     }
 
@@ -35,17 +35,17 @@ class StudentService extends Service
      */
     public function store($request)
     {
-        if (array_key_exists('kelas_tipe', $request) && array_key_exists('kelas_jurusan', $request) && array_key_exists('kelas_nomer', $request)) {
-            $request['kelas'] = $request['kelas_tipe'] . ' ' . $request['kelas_jurusan'] . ' ' . $request['kelas_nomer'];
+        if (array_key_exists('grade_type', $request) && array_key_exists('grade_mayor', $request) && array_key_exists('grade_number', $request)) {
+            $request['grade'] = $request['grade_type'] . ' ' . $request['grade_mayor'] . ' ' . $request['grade_number'];
 
-            unset($request['kelas_tipe']);
-            unset($request['kelas_jurusan']);
-            unset($request['kelas_nomer']);
+            unset($request['grade_type']);
+            unset($request['grade_mayor']);
+            unset($request['grade_number']);
         } else {
             return toastr()->error('Data gagal dibuat', 'System');
         }
 
-        $this->siswaInterface->create($request);
+        $this->studentInterface->create($request);
  
         return toastr()->success('Data berhasil dibuat', 'System');
     }
@@ -59,7 +59,7 @@ class StudentService extends Service
     public function show($id)
     {
         return [
-            'student' => $this->siswaInterface->findById($id)
+            'student' => $this->studentInterface->findById($id)
         ];
     }
 
@@ -72,7 +72,7 @@ class StudentService extends Service
     public function edit($id)
     {
         return [
-            'student' => $this->siswaInterface->findById($id)
+            'student' => $this->studentInterface->findById($id)
         ];
     }
 
@@ -84,7 +84,7 @@ class StudentService extends Service
      */
     public function update($request, $id)
     {
-        $this->siswaInterface->update($id, $request);
+        $this->studentInterface->update($id, $request);
 
         return toastr()->success('Data berhasil diubah', 'System');
     }
@@ -96,7 +96,7 @@ class StudentService extends Service
      */
     public function destroy($id)
     {
-        $this->siswaInterface->deleteById($id);
+        $this->studentInterface->deleteById($id);
 
         return toastr()->success('Data berhasil dihapus', 'System');
     }

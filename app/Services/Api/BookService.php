@@ -17,11 +17,11 @@ class BookService extends ApiService
         if (count($books) > 0) {
             return $this->createResponse('Data berhasil diterima', route('api.book.index'), [
                 'data' => BookResource::collection($books)
-            ]);
+            ], 202);
         } else {
             return $this->createResponse('Data berhasil diterima', route('api.book.index'), [
                 'data' => 'Tidak ada data yang tersedia'
-            ]);
+            ], 202);
         }
     }
 

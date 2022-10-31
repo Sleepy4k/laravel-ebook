@@ -22,14 +22,12 @@ class LoginService extends ApiService
                 'error' => 'Proses authentikasi gagal silahkan coba lagi'
             ], 401);
         }
-
+        
         $token = $user->createToken(fake()->name);
 
         return $this->createResponse('Authentikasi berhasil', route('api.login.store'), [
-            'data' => [
-                'user' => new UserResource($user),
-                'token' => $token->plainTextToken
-            ]
-        ], 201);
+            'data' => new UserResource($user),
+            'token' => $token->plainTextToken
+        ], 202);
     }
 }

@@ -24,7 +24,7 @@ class PublisherService extends Service
     public function create()
     {
         return [
-            'publishers' => $this->publisherInterface->all(['id', 'nama'])
+            'publishers' => $this->publisherInterface->all(['id', 'name'])
         ];
     }
 
@@ -49,7 +49,7 @@ class PublisherService extends Service
     public function show($id)
     {
         return [
-            'publisher' => $this->publisherInterface->findById($id, ['id', 'nama'])
+            'publisher' => $this->publisherInterface->findById($id, ['id', 'name'])
         ];
     }
 
@@ -62,7 +62,7 @@ class PublisherService extends Service
     public function edit($id)
     {
         return [
-            'publisher' => $this->publisherInterface->findById($id, ['id', 'nama'])
+            'publisher' => $this->publisherInterface->findById($id, ['id', 'name'])
         ];
     }
 

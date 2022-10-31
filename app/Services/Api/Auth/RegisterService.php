@@ -18,6 +18,6 @@ class RegisterService extends ApiService
 
         return $this->createResponse('Akun berhasil di daftarkan', route('api.register.store'), [
             'data' => new UserResource($user)
-        ]);
+        ], 202);
     }
 }
