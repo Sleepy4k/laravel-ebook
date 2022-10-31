@@ -33,8 +33,8 @@ class BookRepository extends EloquentRepository implements BookInterface
      */
     public function create(array $payload): ?Model
     {
-        if (array_key_exists('tanggal_terbit', $payload)) {
-            $payload['tanggal_terbit'] = Carbon::parse($payload['tanggal_terbit'])->format('Y-m-d');
+        if (array_key_exists('date_of_issue', $payload)) {
+            $payload['date_of_issue'] = Carbon::parse($payload['date_of_issue'])->format('Y-m-d');
         }
 
         $model = $this->model->create($payload);
@@ -51,8 +51,8 @@ class BookRepository extends EloquentRepository implements BookInterface
      */
     public function update(int $modelId, array $payload): bool
     {
-        if (array_key_exists('tanggal_terbit', $payload)) {
-            $payload['tanggal_terbit'] = Carbon::parse($payload['tanggal_terbit'])->format('Y-m-d');
+        if (array_key_exists('date_of_issue', $payload)) {
+            $payload['date_of_issue'] = Carbon::parse($payload['date_of_issue'])->format('Y-m-d');
         }
         
         $model = $this->findById($modelId);
