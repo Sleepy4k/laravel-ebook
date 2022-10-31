@@ -17,12 +17,12 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'judul' => fake()->sentence(4),
-            'deskripsi' => fake()->text(300),
+            'title' => fake()->sentence(4),
+            'description' => fake()->text(300),
             'author_id' => rand(1,25),
             'publisher_id' => rand(1,25),
             'category_id' => rand(1,25),
-            'tanggal_terbit' => fake()->dateTimeBetween('2000-01-01', now()->format('Y-m-d'))
+            'date_of_issue' => fake()->dateTimeBetween('2000-01-01', now()->format('Y-m-d'))
         ];
     }
 }
