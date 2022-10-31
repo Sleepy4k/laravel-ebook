@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Services\Web\StudentService;
 use App\DataTables\StudentDataTable;
-use App\Http\Requests\Web\Siswa\StoreRequest;
-use App\Http\Requests\Web\Siswa\UpdateRequest;
+use App\Http\Requests\Web\Student\StoreRequest;
+use App\Http\Requests\Web\Student\UpdateRequest;
 
 class StudentController extends Controller
 {

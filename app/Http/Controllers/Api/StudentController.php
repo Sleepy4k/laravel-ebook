@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Services\Api\SiswaService;
+use App\Services\Api\StudentService;
 use App\Http\Controllers\ApiController;
-use App\Http\Requests\Api\Siswa\StoreRequest;
-use App\Http\Requests\Api\Siswa\UpdateRequest;
+use App\Http\Requests\Api\Student\StoreRequest;
+use App\Http\Requests\Api\Student\UpdateRequest;
 
-class SiswaController extends ApiController
+class StudentController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SiswaService $service)
+    public function index(StudentService $service)
     {
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.siswa.index'));
+            return $this->catchError($th, route('api.student.index'));
         }
     }
 
@@ -29,12 +29,12 @@ class SiswaController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, SiswaService $service)
+    public function store(StoreRequest $request, StudentService $service)
     {
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.siswa.store'));
+            return $this->catchError($th, route('api.student.store'));
         }
     }
 
@@ -44,12 +44,12 @@ class SiswaController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SiswaService $service, $id)
+    public function show(StudentService $service, $id)
     {
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.siswa.show', $id));
+            return $this->catchError($th, route('api.student.show', $id));
         }
     }
 
@@ -60,12 +60,12 @@ class SiswaController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, SiswaService $service, $id)
+    public function update(UpdateRequest $request, StudentService $service, $id)
     {
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.siswa.update', $id));
+            return $this->catchError($th, route('api.student.update', $id));
         }
     }
 
@@ -75,12 +75,12 @@ class SiswaController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SiswaService $service, $id)
+    public function destroy(StudentService $service, $id)
     {
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.siswa.destroy', $id));
+            return $this->catchError($th, route('api.student.destroy', $id));
         }
     }
 }
