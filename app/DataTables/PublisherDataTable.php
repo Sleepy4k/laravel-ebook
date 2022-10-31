@@ -59,6 +59,7 @@ class PublisherDataTable extends DataTable
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
+                        Button::make('print'),
                         Button::make('reload'),
                         Button::make('copy')
                     );
@@ -73,7 +74,7 @@ class PublisherDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('nama')
+            Column::make('name')
                     ->title('Nama')
                     ->addClass('text-center'),
             Column::computed('action')
