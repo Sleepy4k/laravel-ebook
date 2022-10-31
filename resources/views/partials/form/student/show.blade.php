@@ -1,20 +1,20 @@
-@extends('layouts.dashboard', ['title' => 'Data Siswa'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form disabled>
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" class="form-control" value="{{ $student->nama }}" disabled>
+            <label for="name">Nama</label>
+            <input type="text" id="name" class="form-control" value="{{ $student->name }}" disabled>
         </div>
 
         <div class="form-group">
-            <label for="umur">Umur</label>
-            <input type="text" id="umur" class="form-control" value="{{ $student->umur }} Tahun" disabled>
+            <label for="age">Umur</label>
+            <input type="text" id="age" class="form-control" value="{{ $student->age }} Tahun" disabled>
         </div>
 
         <div class="form-group">
-            <label for="kelamin">Jenis Kelamin</label>
-            <input type="text" id="kelamin" class="form-control" value="{{ ucfirst($student->kelamin) }}" disabled>
+            <label for="gender">Jenis Kelamin</label>
+            <input type="text" id="gender" class="form-control" value="{{ ucfirst($student->gender) }}" disabled>
         </div>
 
         <div class="form-group">
@@ -23,18 +23,18 @@
         </div>
 
         <div class="form-group">
-            <label for="nomor_hp">Nomor Handphone</label>
-            <input type="tel" id="nomor_hp" class="form-control" value="{{ $student->nomor_hp }}" disabled>
+            <label for="phone">Nomor Handphone</label>
+            <input type="tel" id="phone" class="form-control" value="{{ $student->phone }}" disabled>
         </div>
 
         <div class="form-group">
-            <label for="alamat">Alamat</label>
-            <textarea class="form-control" id="alamat" rows="3" disabled>{{ $student->alamat }}</textarea>
+            <label for="address">Alamat</label>
+            <textarea class="form-control" id="address" rows="3" disabled>{{ $student->address }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="kelas">Kelas</label>
-            <input type="text" id="kelas" class="form-control" value="{{ $student->kelas }}" disabled>
+            <label for="grade">Kelas</label>
+            <input type="text" id="grade" class="form-control" value="{{ $student->grade }}" disabled>
         </div>
 
         <div class="row">

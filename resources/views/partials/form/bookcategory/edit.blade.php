@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Kategori Buku'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form action="{{ route('table.category.update', $bookCategory->id) }}" method="POST">
@@ -6,8 +6,8 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Kategori Buku" value="{{ old('nama', $bookCategory->nama) }}" required autofocus>
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama Kategori Buku" value="{{ old('name', $bookCategory->name) }}" required autofocus>
         </div>
 
         <div class="row">

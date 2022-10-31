@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Buku'])
+@extends('layouts.dashboard')
 
 @once
     @push('addon-css')
@@ -12,20 +12,20 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="judul">Judul</label>
-            <input type="text" id="judul" name="judul" class="form-control" placeholder="Judul Buku" value="{{ old('judul', $book->judul) }}" required autofocus>
+            <label for="title">Judul</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Judul Buku" value="{{ old('title', $book->title) }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="deskripsi">Deskripsi</label>
-            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Buku" required autofocus>{{ old('deskripsi', $book->deskripsi) }}</textarea>
+            <label for="description">Deskripsi</label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Deskripsi Buku" required autofocus>{{ old('description', $book->description) }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="author_id">Penulis</label>
             <select id="author_id" class="choices form-select" name="author_id" required autofocus>
                 @foreach ($authors as $author)
-                    <option value="{{ $author->id }}" {{ ($book->author_id == $author->id) ? 'selected' : '' }}>{{ $author->nama }}</option>
+                    <option value="{{ $author->id }}" {{ ($book->author_id == $author->id) ? 'selected' : '' }}>{{ $author->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -34,7 +34,7 @@
             <label for="publisher_id">Penerbit</label>
             <select id="publisher_id" class="choices form-select" name="publisher_id" required autofocus>
                 @foreach ($publishers as $publisher)
-                    <option value="{{ $publisher->id }}" {{ ($book->publisher_id == $publisher->id) ? 'selected' : '' }}>{{ $publisher->nama }}</option>
+                    <option value="{{ $publisher->id }}" {{ ($book->publisher_id == $publisher->id) ? 'selected' : '' }}>{{ $publisher->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -43,14 +43,14 @@
             <label for="category_id">Kategori</label>
             <select id="category_id" class="choices form-select" name="category_id" required autofocus>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ ($book->category_id == $category->id) ? 'selected' : '' }}>{{ $category->nama }}</option>
+                    <option value="{{ $category->id }}" {{ ($book->category_id == $category->id) ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
-            <label for="tanggal_terbit">Tanggal Terbit Buku</label>
-            <input type="date" id="tanggal_terbit" name="tanggal_terbit" class="form-control" value="{{ old('tanggal_terbit', $book->tanggal_terbit->format('Y-m-d')) }}" required autofocus>
+            <label for="date_of_issue">Tanggal Terbit Buku</label>
+            <input type="date" id="date_of_issue" name="date_of_issue" class="form-control" value="{{ old('date_of_issue', $book->date_of_issue->format('Y-m-d')) }}" required autofocus>
             <p><small class="text-muted">Format harus berupa Bulan/Tanggal/Tahun</small></p>
         </div>
 

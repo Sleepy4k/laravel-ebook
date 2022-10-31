@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Penulis'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form disabled>
@@ -8,8 +8,8 @@
         </div>
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" class="form-control" value="{{ $author->nama }}" disabled>
+            <label for="name">Nama</label>
+            <input type="text" id="name" class="form-control" value="{{ $author->name }}" disabled>
         </div>
 
         <div class="row">

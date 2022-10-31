@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Penerbit'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form action="{{ route('table.publisher.update', $publisher->id) }}" method="POST">
@@ -6,8 +6,8 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Penerbit" value="{{ old('nama', $publisher->nama) }}" required autofocus>
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama Penerbit" value="{{ old('name', $publisher->name) }}" required autofocus>
         </div>
 
         <div class="row">

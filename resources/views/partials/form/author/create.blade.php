@@ -1,12 +1,12 @@
-@extends('layouts.dashboard', ['title' => 'Data Penulis'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <form action="{{ route('table.author.store') }}" method="POST">
         @csrf
 
         <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Penulis" value="{{ old('nama') }}" required autofocus>
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Nama Penulis" value="{{ old('name') }}" required autofocus>
         </div>
 
         <div class="row">
