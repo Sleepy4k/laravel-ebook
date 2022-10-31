@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth('sanctum')->check();
     }
 
     /**

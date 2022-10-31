@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Dashboard'])
+@extends('layouts.dashboard')
 
 @section('page-content')
     <div class="col-12 col-lg-9">

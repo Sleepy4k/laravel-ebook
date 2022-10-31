@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Api\Publisher;
+namespace App\Http\Requests\Api\Auth;
 
 use App\Traits\ApiRespons;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     use ApiRespons;
 
@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth('sanctum')->check();
+        return true;
     }
 
     /**
@@ -36,7 +36,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => ['required','string','max:255']
+            'username' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'max:255']
         ];
     }
 
@@ -84,7 +85,7 @@ class UpdateRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->createResponse('Server Error', route('api.publisher.index'), [
+            $this->createResponse('Server Error', route('api.login.store'), [
                 'data' => $validator->errors()
             ], 400)
         );

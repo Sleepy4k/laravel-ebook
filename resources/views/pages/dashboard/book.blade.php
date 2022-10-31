@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Data Buku'])
+@extends('layouts.dashboard')
 
 @once
     @push('addon-css')
@@ -7,11 +7,11 @@
 @endonce
 
 @section('page-content')
-    <div class="card">
-        <div class="card-body">
-            {!! $dataTable->table() !!}
-        </div>
-    </div>
+    {{
+        html()->element('div')->class('card')->children([
+            html()->element('div')->class('card-body')->child($dataTable->table())
+        ])
+    }}
 @endsection
 
 @once
