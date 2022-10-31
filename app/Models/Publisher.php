@@ -112,7 +112,7 @@ class Publisher extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama'])
+                            ->logOnly(['name'])
                             ->logOnlyDirty()
                             ->useLogName('Publisher')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Publisher successfully {$eventName}")

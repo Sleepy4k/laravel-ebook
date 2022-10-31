@@ -113,7 +113,7 @@ class BookCategory extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['nama'])
+                            ->logOnly(['name'])
                             ->logOnlyDirty()
                             ->useLogName('Book Category')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Book Category successfully {$eventName}")

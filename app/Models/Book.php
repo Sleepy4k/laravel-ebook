@@ -104,7 +104,7 @@ class Book extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'tanggal_terbit' => 'datetime:Y-m-d'
+        'date_of_issue' => 'datetime:Y-m-d'
     ];
     
     /**
@@ -115,7 +115,7 @@ class Book extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['judul', 'deskripsi', 'author_id', 'publisher_id', 'category_id', 'tanggal_terbit', 'tersedia'])
+                            ->logOnly(['title', 'description', 'author_id', 'publisher_id', 'category_id', 'date_of_issue', 'available'])
                             ->logOnlyDirty()
                             ->useLogName('Book')
                             ->setDescriptionForEvent(fn(string $eventName) => "model Book successfully {$eventName}")
