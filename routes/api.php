@@ -31,12 +31,12 @@ Route::resource('register', Api\Auth\RegisterController::class, ['only' => ['sto
 */
 Route::middleware('auth:sanctum')->group(function() {
     Route::resource('logout', Api\Auth\LogoutController::class, ['only' => ['store']]);
-    Route::resource('siswa', Api\SiswaController::class, ['except' => ['create', 'edit']]);
-    Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
-    Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
-    Route::resource('category', Api\BookCategoryController::class, ['except' => ['create', 'edit']]);
-    Route::resource('publisher', Api\PublisherController::class, ['except' => ['create', 'edit']]);
     Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
+    Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
+    Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
+    Route::resource('student', Api\StudentController::class, ['except' => ['create', 'edit']]);
+    Route::resource('publisher', Api\PublisherController::class, ['except' => ['create', 'edit']]);
+    Route::resource('category', Api\BookCategoryController::class, ['except' => ['create', 'edit']]);
 });
 
 /*
