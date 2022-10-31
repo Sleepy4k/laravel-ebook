@@ -30,7 +30,7 @@ class Kernel extends HttpKernel
         \RenatoMarinho\LaravelPageSpeed\Middleware\InsertDNSPrefetch::class,
         \RenatoMarinho\LaravelPageSpeed\Middleware\RemoveComments::class,
         \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
-        // \RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls::class,
+        \RenatoMarinho\LaravelPageSpeed\Middleware\TrimUrls::class,
         // \RenatoMarinho\LaravelPageSpeed\Middleware\DeferJavascript::class,
     ];
 
@@ -50,10 +50,10 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\ApiMiddleware::class,
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\ApiMiddleware::class,
         ],
     ];
 
