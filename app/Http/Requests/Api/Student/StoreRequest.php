@@ -3,23 +3,11 @@
 namespace App\Http\Requests\Api\Student;
 
 use App\Enums\GenderEnum;
-use App\Traits\ApiRespons;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\ApiRequest;
 
-class StoreRequest extends FormRequest
+class StoreRequest extends ApiRequest
 {
-    use ApiRespons;
-
-    /**
-     * Indicates if the validator should stop on the first rule failure.
-     *
-     * @var bool
-     */
-    protected $stopOnFirstFailure = false;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -56,45 +44,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'kelamin' => 'Data `kelamin` tidak valid, data harus bernilai putra atau putri'
+            'gender' => 'Data `gender` tidak valid, data harus bernilai putra atau putri'
         ];
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            // 
-        ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            // 
-        ]);
-    }
-
-    /**
-     * Custom error message for validation
-     *
-     * @return array
-     */
-    public function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            $this->createResponse('Server Error', route('api.student.index'), [
-                'data' => $validator->errors()
-            ], 400)
-        );
     }
 }
