@@ -87,7 +87,7 @@ trait ApiRespons
             if (isset($data['token'])) {
                 static::$formatter['token'] = $this->replaceNullValueWithEmptyString($data['token']);
                 static::$formatter['token_type'] = isset($data['token_type']) ? $data['token_type'] : 'Bearer';
-                static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : '3600';
+                static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : config('sanctum.expiration') * 60;
             }
 
             return response()->json(static::$formatter, $code);
