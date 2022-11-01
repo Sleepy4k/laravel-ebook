@@ -2,24 +2,12 @@
 
 namespace App\Http\Requests\Api\Book;
 
-use App\Traits\ApiRespons;
 use App\Enums\BookStatusEnum;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Requests\ApiRequest;
 
-class StoreRequest extends FormRequest
+class StoreRequest extends ApiRequest
 {
-    use ApiRespons;
-
-    /**
-     * Indicates if the validator should stop on the first rule failure.
-     *
-     * @var bool
-     */
-    protected $stopOnFirstFailure = false;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -56,45 +44,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'tersedia' => 'Data `tersedia` tidak valid, data harus bernilai Y atau N'
+            'available' => 'Data `available` tidak valid, data harus bernilai Y atau N'
         ];
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            // 
-        ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            // 
-        ]);
-    }
-
-    /**
-     * Custom error message for validation
-     *
-     * @return array
-     */
-    public function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            $this->createResponse('Server Error', route('api.book.index'), [
-                'data' => $validator->errors()
-            ], 400)
-        );
     }
 }

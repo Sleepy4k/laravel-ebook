@@ -3,19 +3,11 @@
 namespace App\Http\Requests\Web\Student;
 
 use App\Enums\GenderEnum;
+use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
-class StoreRequest extends FormRequest
+class StoreRequest extends Request
 {
-    /**
-     * Indicates if the validator should stop on the first rule failure.
-     *
-     * @var bool
-     */
-    protected $stopOnFirstFailure = false;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -56,45 +48,5 @@ class StoreRequest extends FormRequest
         return [
             'gender' => 'Data `gender` tidak valid, data harus bernilai putra atau putri'
         ];
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            // 
-        ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            // 
-        ]);
-    }
-    
-    /**
-     * Custom error response for validation.
-     *
-     * @return array
-     */
-    public function failedValidation(Validator $validator)
-    {
-        $toast = toastr();
-
-        foreach ($validator->messages()->all() as $message) {
-            $toast->error($message, 'Validation');
-        }
-
-        return $toast;
     }
 }
