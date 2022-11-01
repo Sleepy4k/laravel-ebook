@@ -5,10 +5,8 @@ namespace App\DataTables;
 use App\Traits\LogReader;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class QueryDataTable extends DataTable
 {

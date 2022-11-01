@@ -50,7 +50,7 @@
 
         <div class="form-group">
             <label for="date_of_issue">Tanggal Terbit Buku</label>
-            <input type="date" id="date_of_issue" name="date_of_issue" class="form-control" value="{{ old('date_of_issue', $book->date_of_issue->format('Y-m-d')) }}" required autofocus>
+            <input type="date" id="date_of_issue" name="date_of_issue" class="form-control" value="{{ old('date_of_issue', dateDmyToYmd($book->date_of_issue)) }}" required autofocus>
             <p><small class="text-muted">Format harus berupa Bulan/Tanggal/Tahun</small></p>
         </div>
 

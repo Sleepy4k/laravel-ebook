@@ -22,7 +22,7 @@ class BookFactory extends Factory
             'author_id' => rand(1,25),
             'publisher_id' => rand(1,25),
             'category_id' => rand(1,25),
-            'date_of_issue' => fake()->dateTimeBetween('2000-01-01', now()->format('Y-m-d'))
+            'date_of_issue' => fake()->dateTimeBetween('2000-01-01', dateDmyToYmd(now()))
         ];
     }
 }

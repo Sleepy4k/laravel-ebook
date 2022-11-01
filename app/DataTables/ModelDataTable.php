@@ -55,7 +55,7 @@ class ModelDataTable extends DataTable
                 return json_encode($query->properties);
             })
             ->editColumn('created_at', function($query){
-                return $query->created_at->format('d-m-Y');
+                return dateYmdToDmy($query->created_at);
             })
             ->setRowId('id');
     }

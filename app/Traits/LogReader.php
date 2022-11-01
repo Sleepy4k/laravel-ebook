@@ -17,7 +17,7 @@ trait LogReader
             if ($date) {
                 $content = file_get_contents(storage_path('logs/'.$channel.'-'.$date.'.log'));
             } else {
-                $content = file_get_contents(storage_path('logs/'.$channel.'-'.now()->format('Y-m-d').'.log'));
+                $content = file_get_contents(storage_path('logs/'.$channel.'-'.dateDmyToYmd(now()).'.log'));
             }
         } else {
             $content = file_get_contents(storage_path('logs/'.$channel.'.log'));
@@ -31,7 +31,7 @@ trait LogReader
                 'timestamp' => $match['date'],
                 'env' => $match['env'],
                 'type' => $match['type'],
-                'date' => now()->format('Y-m-d'),
+                'date' => dateDmyToYmd(now()),
                 'message' => trim($match['message'])
             ];
         }

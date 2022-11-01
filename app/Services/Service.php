@@ -61,9 +61,9 @@ class Service
     {
         $this->bookInterface = $bookInterface;
         $this->userInterface = $userInterface;
-        $this->studentInterface = $studentInterface;
         $this->auditInterface = $auditInterface;
         $this->authorInterface = $authorInterface;
+        $this->studentInterface = $studentInterface;
         $this->publisherInterface = $publisherInterface;
         $this->bookCategoryInterface = $bookCategoryInterface;
     }

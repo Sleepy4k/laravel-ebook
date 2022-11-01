@@ -24,7 +24,7 @@ class BookResource extends JsonResource
             'author' => $this->author->name,
             'publisher' => $this->publisher->name,
             'category' => $this->category->name,
-            'date_of_issue' => $this->date_of_issue,
+            'date_of_issue' => dateYmdToDmy($this->date_of_issue),
             'status' => ($this->available == 'Y') ? 'Tersedia' : 'Tidak Tersedia'
         ];
     }
