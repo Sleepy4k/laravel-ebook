@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /**
  * Convert date format from Y-m-d to d-m-Y
  *
@@ -9,7 +11,7 @@
 if (!function_exists('dateYmdToDmy')) {
     function dateYmdToDmy($date)
     {
-        return $date->format('d-m-y');
+        return Carbon::parse($date)->format('d-m-y');
     }
 }
   
@@ -22,6 +24,6 @@ if (!function_exists('dateYmdToDmy')) {
 if (!function_exists('dateDmyToYmd')) {
     function dateDmyToYmd($date)
     {
-        return $date->format('Y-m-d');
+        return Carbon::parse($date)->format('Y-m-d');
     }
 }
