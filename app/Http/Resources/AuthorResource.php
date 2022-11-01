@@ -15,8 +15,8 @@ class AuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'ID' => $this->id,
-            'Nama' => $this->name
+            'id' => $this->id,
+            'name' => $this->name
         ];
     }
 }
