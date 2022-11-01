@@ -34,7 +34,7 @@ class BookDataTable extends DataTable
                 return $query->category->name;
             })
             ->editColumn('date_of_issue', function($query){
-                return $query->date_of_issue->format('d-m-Y');
+                return dateYmdToDmy($query->date_of_issue);
             })
             ->editColumn('available', function($query){
                 return ($query->available == 'Y') ? 'Tersedia' : 'Tidak Tersedia';
