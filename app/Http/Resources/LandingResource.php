@@ -15,12 +15,12 @@ class LandingResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'HTTP Method' => $this->methods,
-            'Route' => $this->uri,
-            'Name' => $this->action['as'],
-            'Prefix' => $this->action['prefix'],
-            'Middleware' => $this->action['middleware'],
-            'Controller' => $this->action['controller']
+            'http_method' => $this->methods,
+            'uri' => $this->uri,
+            'route' => $this->action['as'],
+            'prefix' => $this->action['prefix'],
+            'middleware' => $this->action['middleware'],
+            'controller' => $this->action['controller']
         ];
     }
 }

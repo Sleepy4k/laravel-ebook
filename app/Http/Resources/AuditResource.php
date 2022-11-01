@@ -18,13 +18,13 @@ class AuditResource extends JsonResource
         $causer = ($this->causer_id ? $this->causer_id : 'null') . ' | ' . ($this->causer_type ? $this->causer_type : 'null');
 
         return [
-            'ID' => $this->id,
-            'Nama' => $this->log_name,
-            'Deskripsi' => $this->description,
-            'Subjek' => $subject,
-            'Event' => $this->event,
-            'Causer' => $causer,
-            'Properti' => $this->properties
+            'id' => $this->id,
+            'log_name' => $this->log_name,
+            'description' => $this->description,
+            'subject' => $subject,
+            'event' => $this->event,
+            'causer' => $causer,
+            'properties' => $this->properties
         ];
     }
 }

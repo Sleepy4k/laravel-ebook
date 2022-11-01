@@ -15,14 +15,14 @@ class StudentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "ID" => $this->id,
-            "Nama" => $this->name,
-            "Umur" => $this->age . ' Tahun',
-            "Jenis Kelamin" => $this->gender,
-            "Surel" => $this->email,
-            "Nomor Handphone" => $this->phone,
-            "Alamat Rumah" => $this->address,
-            "Kelas" => $this->grade
+            "id" => $this->id,
+            "name" => $this->name,
+            "age" => $this->age . ' Tahun',
+            "gender" => $this->gender,
+            "email" => $this->email,
+            "phone" => $this->phone,
+            "address" => $this->address,
+            "grade" => $this->grade
         ];
     }
 }

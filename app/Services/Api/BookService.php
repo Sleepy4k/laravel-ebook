@@ -12,7 +12,7 @@ class BookService extends ApiService
      */
     public function index()
     {
-        $books = $this->bookInterface->all();
+        $books = $this->bookInterface->all(['*'], ['author', 'publisher', 'category']);
 
         if (count($books) > 0) {
             return $this->createResponse('Data berhasil diterima', route('api.book.index'), [
@@ -32,10 +32,11 @@ class BookService extends ApiService
      */
     public function store($request)
     {
-        $book = $this->bookInterface->create($request);
+        $this->bookInterface->create($request);
+        $book = $this->bookInterface->all(['*'], ['author', 'publisher', 'category']);
 
         return $this->createResponse('Data berhasil dibuat', route('api.book.store'), [
-            'data' => new BookResource($book)
+            'data' => BookResource::collection($book)
         ], 201);
     }
 
@@ -46,7 +47,7 @@ class BookService extends ApiService
      */
     public function show($id)
     {
-        $book = $this->bookInterface->findById($id);
+        $book = $this->bookInterface->findById($id, ['*'], ['author', 'publisher', 'category']);
 
         return $this->createResponse('Data berhasil diterima', route('api.book.show', $id), [
             'data' => new BookResource($book)
@@ -64,7 +65,7 @@ class BookService extends ApiService
         $this->bookInterface->update(intval($id), $request);
 
         if (!empty($request)) {
-            $book = $this->bookInterface->findById($id);
+            $book = $this->bookInterface->findById($id, ['*'], ['author', 'publisher', 'category']);
 
             return $this->createResponse('Data berhasil diubah', route('api.book.update', $id), [
                 'data' => new BookResource($book)
@@ -84,7 +85,7 @@ class BookService extends ApiService
     public function destroy($id)
     {
         $this->bookInterface->deleteById($id);
-        $books = $this->bookInterface->all();
+        $books = $this->bookInterface->all(['*'], ['author', 'publisher', 'category']);
 
         return $this->createResponse('Data berhasil dihapus', route('api.book.destroy', $id), [
             'data' => BookResource::collection($books)

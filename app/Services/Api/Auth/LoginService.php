@@ -15,11 +15,17 @@ class LoginService extends ApiService
      */
     public function store($request)
     {
-        $user = $this->userInterface->findByCustomId([['username', $request['username']]]);
+        try {
+            $user = $this->userInterface->findByCustomId([['username', $request['username']]]);
+        } catch (\Throwable $th) {
+            return $this->createResponse('Authentikasi Gagal', route('api.login.store'), [
+                'error' => 'Akun tidak ditemukan, silahkan register terlebih dahulu'
+            ], 401);
+        }
 
         if (!$user || !Hash::check($request['password'], $user->password)) {
-            $this->createResponse('Authentikasi Gagal', route('api.login.store'), [
-                'error' => 'Proses authentikasi gagal silahkan coba lagi'
+            return $this->createResponse('Authentikasi Gagal', route('api.login.store'), [
+                'error' => 'Password salah, silahkan coba lagi'
             ], 401);
         }
         

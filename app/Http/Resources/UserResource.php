@@ -15,9 +15,9 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'Nama Pengguna' => $this->name,
-            'Nama Alias' => $this->username,
-            'Bergabung Pada' => $this->created_at->format('d-m-Y')
+            'name' => $this->name,
+            'username' => $this->username,
+            'joined_at' => $this->created_at->format('d-m-Y')
         ];
     }
 }
