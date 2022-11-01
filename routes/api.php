@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api;
+use App\Http\Controllers\Api\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
 Route::resource('me', Api\HomeController::class, ['only' => ['index']]);
-Route::resource('login', Api\Auth\LoginController::class, ['only' => ['store']]);
-Route::resource('register', Api\Auth\RegisterController::class, ['only' => ['store']]);
+Route::resource('login', Auth\LoginController::class, ['only' => ['store']]);
+Route::resource('register', Auth\RegisterController::class, ['only' => ['store']]);
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::resource('register', Api\Auth\RegisterController::class, ['only' => ['sto
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth:sanctum')->group(function() {
-    Route::resource('logout', Api\Auth\LogoutController::class, ['only' => ['store']]);
+    Route::resource('logout', Auth\LogoutController::class, ['only' => ['store']]);
     Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
     Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
     Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
