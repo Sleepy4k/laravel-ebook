@@ -1,7 +1,7 @@
 <?php
   
 namespace App\Enums;
- 
+
 class BookStatusEnum {
     const tersedia = 'Y';
     const tidak_tersedia = 'N';
