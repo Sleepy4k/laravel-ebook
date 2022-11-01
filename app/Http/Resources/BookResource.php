@@ -2,9 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Author;
-use App\Models\BookCategory;
-use App\Models\Publisher;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookResource extends JsonResource
