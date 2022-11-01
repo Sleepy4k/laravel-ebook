@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <label for="date_of_issue">Tanggal Terbit Buku</label>
-            <input type="date" id="date_of_issue" class="form-control" value="{{ $book->date_of_issue->format('Y-m-d') }}" disabled>
+            <input type="date" id="date_of_issue" class="form-control" value="{{ dateDmyToYmd($book->date_of_issue) }}" disabled>
         </div>
 
         <div class="row">
