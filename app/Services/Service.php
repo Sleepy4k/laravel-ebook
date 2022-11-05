@@ -3,12 +3,9 @@
 namespace App\Services;
 
 use App\Contracts\Models;
-use App\Traits\ChartConvert;
 
 class Service
 {
-    use ChartConvert;
-
     /**
      * @var bookInterface
      */

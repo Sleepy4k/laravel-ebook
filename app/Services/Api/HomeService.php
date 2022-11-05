@@ -12,7 +12,7 @@ class HomeService extends ApiService
      */
     public function index()
     {
-        return $this->createResponse('Data berhasil diterima', route('api.me.index'), [
+        return $this->createResponse('Data berhasil diterima', route('api.developer.index'), [
             'data' => new UserResource($this->userInterface->findById(1))
         ], 202);
     }

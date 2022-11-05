@@ -2,9 +2,9 @@
 
 namespace App\Services\Web;
 
-use App\Services\Service;
+use App\Services\WebService;
 
-class PublisherService extends Service
+class PublisherService extends WebService
 {
     /**
      * Index function.

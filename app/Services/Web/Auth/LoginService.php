@@ -2,9 +2,9 @@
 
 namespace App\Services\Web\Auth;
 
-use App\Services\Service;
+use App\Services\WebService;
 
-class LoginService extends Service
+class LoginService extends WebService
 {
     /**
      * Store function.

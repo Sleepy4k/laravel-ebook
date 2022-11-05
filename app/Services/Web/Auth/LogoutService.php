@@ -2,10 +2,10 @@
 
 namespace App\Services\Web\Auth;
 
-use App\Services\Service;
+use App\Services\WebService;
 use Illuminate\Http\Request;
 
-class LogoutService extends Service
+class LogoutService extends WebService
 {
     /**
      * Store function.
