@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\DataTables\SystemDataTable;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 
-class SystemController extends Controller
+class SystemController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,10 @@ class SystemController extends Controller
      */
     public function index(SystemDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.system');
+        try {
+            return $dataTable->render('pages.dashboard.system');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

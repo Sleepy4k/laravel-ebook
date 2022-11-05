@@ -17,7 +17,7 @@ class LandingController extends ApiController
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.landing.index'));
+            return $this->catchError($th);
         }
     }
 }

@@ -17,7 +17,7 @@ class HomeController extends ApiController
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.me.index'));
+            return $this->catchError($th);
         }
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 use App\DataTables\BookCategoryDataTable;
 use App\Services\Web\BookCategoryService;
 use App\Http\Requests\Web\BookCategory\StoreRequest;
 use App\Http\Requests\Web\BookCategory\UpdateRequest;
 
-class BookCategoryController extends Controller
+class BookCategoryController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,11 @@ class BookCategoryController extends Controller
      */
     public function index(BookCategoryService $service, BookCategoryDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.bookcategory', $service->index());
+        try {
+            return $dataTable->render('pages.dashboard.bookcategory', $service->index());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -27,7 +31,11 @@ class BookCategoryController extends Controller
      */
     public function create(BookCategoryService $service)
     {
-        return view('partials.form.bookcategory.create', $service->create());
+        try {
+            return view('partials.form.bookcategory.create', $service->create());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class BookCategoryController extends Controller
      */
     public function store(StoreRequest $request, BookCategoryService $service)
     {
-        $service->store($request->validated());
-    
-        return redirect(route('table.category.index'));
+        try {
+            $service->store($request->validated());
+        
+            return to_route('table.category.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -51,7 +63,11 @@ class BookCategoryController extends Controller
      */
     public function show(BookCategoryService $service, $id)
     {
-        return view('partials.form.bookcategory.show', $service->show($id));
+        try {
+            return view('partials.form.bookcategory.show', $service->show($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -62,7 +78,11 @@ class BookCategoryController extends Controller
      */
     public function edit(BookCategoryService $service, $id)
     {
-        return view('partials.form.bookcategory.edit', $service->edit($id));
+        try {
+            return view('partials.form.bookcategory.edit', $service->edit($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -74,9 +94,13 @@ class BookCategoryController extends Controller
      */
     public function update(UpdateRequest $request, BookCategoryService $service, $id)
     {
-        $service->update($request->validated(), $id);
-    
-        return redirect(route('table.category.index'));
+        try {
+            $service->update($request->validated(), $id);
+        
+            return to_route('table.category.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -87,8 +111,12 @@ class BookCategoryController extends Controller
      */
     public function destroy(BookCategoryService $service, $id)
     {
-        $service->destroy($id);
-
-        return back();
+        try {
+            $service->destroy($id);
+    
+            return back();
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

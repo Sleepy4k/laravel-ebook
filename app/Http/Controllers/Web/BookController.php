@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\DataTables\BookDataTable;
 use App\Services\Web\BookService;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 use App\Http\Requests\Web\Book\StoreRequest;
 use App\Http\Requests\Web\Book\UpdateRequest;
 
-class BookController extends Controller
+class BookController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,11 @@ class BookController extends Controller
      */
     public function index(BookService $service, BookDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.book', $service->index());
+        try {
+            return $dataTable->render('pages.dashboard.book', $service->index());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -27,7 +31,11 @@ class BookController extends Controller
      */
     public function create(BookService $service)
     {
-        return view('partials.form.book.create', $service->create());
+        try {
+            return view('partials.form.book.create', $service->create());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class BookController extends Controller
      */
     public function store(StoreRequest $request, BookService $service)
     {
-        $service->store($request->validated());
-    
-        return redirect(route('book.index'));
+        try {
+            $service->store($request->validated());
+        
+            return to_route('book.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -51,7 +63,11 @@ class BookController extends Controller
      */
     public function show(BookService $service, $id)
     {
-        return view('partials.form.book.show', $service->show($id));
+        try {
+            return view('partials.form.book.show', $service->show($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -62,7 +78,11 @@ class BookController extends Controller
      */
     public function edit(BookService $service, $id)
     {
-        return view('partials.form.book.edit', $service->edit($id));
+        try {
+            return view('partials.form.book.edit', $service->edit($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -74,9 +94,13 @@ class BookController extends Controller
      */
     public function update(UpdateRequest $request, BookService $service, $id)
     {
-        $service->update($request->validated(), $id);
-    
-        return redirect(route('book.index'));
+        try {
+            $service->update($request->validated(), $id);
+        
+            return to_route('book.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -87,8 +111,12 @@ class BookController extends Controller
      */
     public function destroy(BookService $service, $id)
     {
-        $service->destroy($id);
-
-        return back();
+        try {
+            $service->destroy($id);
+    
+            return back();
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\Services\Web\DashboardService;
+use App\Http\Controllers\WebController;
 
-class DashboardController extends Controller
+class DashboardController extends WebController
 {
-    /**
-     * Locate blade file
-     *
-     * @return string
-     */
-    private static $path = 'pages.dashboard.main';
-
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +14,10 @@ class DashboardController extends Controller
      */
     public function index(DashboardService $service)
     {
-        return view(static::$path, $service->index());
+        try {
+            return view('pages.dashboard.main', $service->index());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

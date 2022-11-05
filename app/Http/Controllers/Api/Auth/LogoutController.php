@@ -18,7 +18,7 @@ class LogoutController extends ApiController
         try {
             return $service->store();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.logout.store'));
+            return $this->catchError($th);
         }
     }
 }

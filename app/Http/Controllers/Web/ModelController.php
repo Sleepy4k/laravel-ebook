@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\DataTables\ModelDataTable;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 
-class ModelController extends Controller
+class ModelController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,10 @@ class ModelController extends Controller
      */
     public function index(ModelDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.model');
+        try {
+            return $dataTable->render('pages.dashboard.model');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

@@ -13,9 +13,11 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    protected function catchError($error, $route)
+    protected function catchError($error)
     {
-        return $this->createResponse('Server Error', $route, [
+        $this->sendReportLog('error', $error->getMessage());
+
+        return $this->createResponse('Server Error', request()->url(), [
             'data' => $error->getMessage()
         ], 500);
     }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\Services\Web\StudentService;
 use App\DataTables\StudentDataTable;
+use App\Http\Controllers\WebController;
 use App\Http\Requests\Web\Student\StoreRequest;
 use App\Http\Requests\Web\Student\UpdateRequest;
 
-class StudentController extends Controller
+class StudentController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,11 @@ class StudentController extends Controller
      */
     public function index(StudentService $service, StudentDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.student', $service->index());
+        try {
+            return $dataTable->render('pages.dashboard.student', $service->index());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -27,7 +31,11 @@ class StudentController extends Controller
      */
     public function create(StudentService $service)
     {
-        return view('partials.form.student.create', $service->create());
+        try {
+            return view('partials.form.student.create', $service->create());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class StudentController extends Controller
      */
     public function store(StoreRequest $request, StudentService $service)
     {
-        $service->store($request->validated());
-    
-        return redirect(route('table.student.index'));
+        try {
+            $service->store($request->validated());
+        
+            return to_route('table.student.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -51,7 +63,11 @@ class StudentController extends Controller
      */
     public function show(StudentService $service, $id)
     {
-        return view('partials.form.student.show', $service->show($id));
+        try {
+            return view('partials.form.student.show', $service->show($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -62,7 +78,11 @@ class StudentController extends Controller
      */
     public function edit(StudentService $service, $id)
     {
-        return view('partials.form.student.edit', $service->edit($id));
+        try {
+            return view('partials.form.student.edit', $service->edit($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -74,9 +94,13 @@ class StudentController extends Controller
      */
     public function update(UpdateRequest $request, StudentService $service, $id)
     {
-        $service->update($request->validated(), $id);
-    
-        return redirect(route('table.student.index'));
+        try {
+            $service->update($request->validated(), $id);
+        
+            return to_route('table.student.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -87,8 +111,12 @@ class StudentController extends Controller
      */
     public function destroy(StudentService $service, $id)
     {
-        $service->destroy($id);
-
-        return back();
+        try {
+            $service->destroy($id);
+    
+            return back();
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }
