@@ -19,7 +19,7 @@ class RegisterController extends ApiController
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.register.store'));
+            return $this->catchError($th);
         }
     }
 }

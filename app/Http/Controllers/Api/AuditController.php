@@ -17,7 +17,7 @@ class AuditController extends ApiController
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.audit.index'));
+            return $this->catchError($th);
         }
     }
 
@@ -32,7 +32,7 @@ class AuditController extends ApiController
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.audit.show', $id));
+            return $this->catchError($th);
         }
     }
 }

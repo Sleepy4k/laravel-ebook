@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Web\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 use App\Services\Web\Auth\LoginService;
 use App\Http\Requests\Web\Auth\LoginRequest;
 
-class LoginController extends Controller
+class LoginController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,11 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('pages.auth.login');
+        try {
+            return view('pages.auth.login');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -26,10 +30,14 @@ class LoginController extends Controller
      */
     public function store(LoginRequest $request, LoginService $service)
     {
-        if ($service->store($request->validated())) {
-            return redirect(route('dashboard.index'));
-        } else {
-            return back();
+        try {
+            if ($service->store($request->validated())) {
+                return to_route('dashboard.index');
+            } else {
+                return back();
+            }
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
         }
     }
 }

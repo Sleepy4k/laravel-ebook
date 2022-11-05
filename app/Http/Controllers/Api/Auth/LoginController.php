@@ -19,7 +19,7 @@ class LoginController extends ApiController
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.login.store'));
+            return $this->catchError($th);
         }
     }
 }

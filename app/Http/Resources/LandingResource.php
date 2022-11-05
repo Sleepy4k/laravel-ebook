@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-
-class LandingResource extends JsonResource
+class LandingResource extends Resource
 {
     /**
      * Transform the resource into an array.

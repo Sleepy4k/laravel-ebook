@@ -19,7 +19,7 @@ class StudentController extends ApiController
         try {
             return $service->index();
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.student.index'));
+            return $this->catchError($th);
         }
     }
 
@@ -34,7 +34,7 @@ class StudentController extends ApiController
         try {
             return $service->store($request->validated());
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.student.store'));
+            return $this->catchError($th);
         }
     }
 
@@ -49,7 +49,7 @@ class StudentController extends ApiController
         try {
             return $service->show($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.student.show', $id));
+            return $this->catchError($th);
         }
     }
 
@@ -65,7 +65,7 @@ class StudentController extends ApiController
         try {
             return $service->update($request->validated(), $id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.student.update', $id));
+            return $this->catchError($th);
         }
     }
 
@@ -80,7 +80,7 @@ class StudentController extends ApiController
         try {
             return $service->destroy($id);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.student.destroy', $id));
+            return $this->catchError($th);
         }
     }
 }

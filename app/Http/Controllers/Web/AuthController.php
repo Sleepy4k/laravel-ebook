@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\DataTables\AuthDataTable;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 
-class AuthController extends Controller
+class AuthController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,10 @@ class AuthController extends Controller
      */
     public function index(AuthDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.auth');
+        try {
+            return $dataTable->render('pages.dashboard.auth');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

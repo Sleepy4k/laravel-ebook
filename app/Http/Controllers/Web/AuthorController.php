@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Services\Web\AuthorService;
 use App\DataTables\AuthorDataTable;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 use App\Http\Requests\Web\Author\StoreRequest;
 use App\Http\Requests\Web\Author\UpdateRequest;
 
-class AuthorController extends Controller
+class AuthorController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,11 @@ class AuthorController extends Controller
      */
     public function index(AuthorService $service, AuthorDataTable $dataTable)
     {
-        return $dataTable->render('pages.dashboard.author', $service->index());
+        try {
+            return $dataTable->render('pages.dashboard.author', $service->index());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -27,7 +31,11 @@ class AuthorController extends Controller
      */
     public function create(AuthorService $service)
     {
-        return view('partials.form.author.create', $service->create());
+        try {
+            return view('partials.form.author.create', $service->create());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class AuthorController extends Controller
      */
     public function store(StoreRequest $request, AuthorService $service)
     {
-        $service->store($request->validated());
-    
-        return redirect(route('table.author.index'));
+        try {
+            $service->store($request->validated());
+        
+            return to_route('table.author.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -51,7 +63,11 @@ class AuthorController extends Controller
      */
     public function show(AuthorService $service, $id)
     {
-        return view('partials.form.author.show', $service->show($id));
+        try {
+            return view('partials.form.author.show', $service->show($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -62,7 +78,11 @@ class AuthorController extends Controller
      */
     public function edit(AuthorService $service, $id)
     {
-        return view('partials.form.author.edit', $service->edit($id));
+        try {
+            return view('partials.form.author.edit', $service->edit($id));
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -74,9 +94,13 @@ class AuthorController extends Controller
      */
     public function update(UpdateRequest $request, AuthorService $service, $id)
     {
-        $service->update($request->validated(), $id);
-    
-        return redirect(route('table.author.index'));
+        try {
+            $service->update($request->validated(), $id);
+        
+            return to_route('table.author.index');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 
     /**
@@ -87,8 +111,12 @@ class AuthorController extends Controller
      */
     public function destroy(AuthorService $service, $id)
     {
-        $service->destroy($id);
-
-        return back();
+        try {
+            $service->destroy($id);
+    
+            return back();
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

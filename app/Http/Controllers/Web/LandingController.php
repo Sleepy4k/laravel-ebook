@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\WebController;
 
-class LandingController extends Controller
+class LandingController extends WebController
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +13,10 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('pages.landing.welcome');
+        try {
+            return view('pages.landing.welcome');
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

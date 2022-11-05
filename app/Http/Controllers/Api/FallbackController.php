@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Services\Api\FallbackService;
 use App\Http\Controllers\ApiController;
 
@@ -12,12 +13,12 @@ class FallbackController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FallbackService $service)
+    public function index(FallbackService $service, Request $request)
     {
         try {
-            return $service->index();
+            return $service->index($request);
         } catch (\Throwable $th) {
-            return $this->catchError($th, route('api.landing.index'));
+            return $this->catchError($th);
         }
     }
 }
