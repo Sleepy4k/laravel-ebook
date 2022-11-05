@@ -17,12 +17,26 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        if (!$request->expectsJson()) {
+            abort(to_route('login.index'));
+        }
+    }
+
+    /**
+     * Stop all system operation when user not authenticated
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\Middleware\Authenticate  $guards
+     * @return string|null
+     */
+    protected function unauthenticated($request, array $guards)
+    {
         if ($request->expectsJson()) {
-            return $this->createResponse('Unauthenticated Access', $request->url(), [
+            abort($this->createResponse('Unauthenticated Access', $request->url(), [
                 'data' => 'Please authenticate your self as an user'
-            ], 401);
+            ], 401));
         } else {
-            return route('login.index');
+            abort(to_route('login.index'));
         }
     }
 }
