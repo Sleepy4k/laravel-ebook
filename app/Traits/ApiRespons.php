@@ -2,10 +2,13 @@
   
 namespace App\Traits;
 
+use App\Traits\SystemLog;
 use Illuminate\Http\Response;
 
 trait ApiRespons 
 {
+    use SystemLog;
+
     /**
      * Set api version
      *
@@ -46,6 +49,7 @@ trait ApiRespons
             'content-type' => null
         ],
         'data' => [],
+        'errors' => [],
         'metadata' => [
             'total_data' => 0
         ]
@@ -68,7 +72,7 @@ trait ApiRespons
             static::$formatter['link'] = nullToEmptyString($link);
 
             static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
-            
+
             static::$formatter['meta']['version'] = static::$version;
             static::$formatter['meta']['author'] = nullToEmptyString(config('app.author'));
             static::$formatter['meta']['host'] = nullToEmptyString(config('app.url'));
@@ -77,8 +81,10 @@ trait ApiRespons
 
             static::$formatter['meta']['accept'] = static::$contentType;
             static::$formatter['meta']['content-type'] = static::$contentType;
-            
-            static::$formatter['data'] = isset($data['data']) ? $data['data'] : [];
+
+            if (isset($data['data'])) {
+                static::$formatter['data'] = nullToEmptyString($data['data']);
+            }
 
             if (isset($data['error'])) {
                 static::$formatter['errors'] = nullToEmptyString($data['error']);
@@ -92,6 +98,8 @@ trait ApiRespons
 
             return response()->json(static::$formatter, $code);
         } catch (\Throwable $th) {
+            $this->sendReportLog('error', 'API | ' . $th->getMessage());
+
             return response()->json([
                 'status' => 500,
                 'error' => $th->getMessage()
