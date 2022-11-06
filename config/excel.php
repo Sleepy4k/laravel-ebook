@@ -14,14 +14,14 @@ return [
         | Here you can specify how big the chunk should be.
         |
         */
-        'chunk_size'             => 1000,
+        'chunk_size'             => env('EXCEL_EXPORT_CHUNK_SIZE', 1000),
 
         /*
         |--------------------------------------------------------------------------
         | Pre-calculate formulas during export
         |--------------------------------------------------------------------------
         */
-        'pre_calculate_formulas' => false,
+        'pre_calculate_formulas' => env('EXCEL_EXPORT_PRE_CALCULATE', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
         | When enabling strict null comparison empty cells ('') will
         | be added to the sheet.
         */
-        'strict_null_comparison' => false,
+        'strict_null_comparison' => env('EXCEL_EXPORT_STRICT', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
         | you can enable it by setting read_only to false.
         |
         */
-        'read_only' => true,
+        'read_only' => env('EXCEL_IMPORT_READ_ONLY', true),
 
         /*
         |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
         | ignored by enabling the setting ignore_empty to true.
         |
         */
-        'ignore_empty' => false,
+        'ignore_empty' => env('EXCEL_IMPORT_IGNORE_EMPTY', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -227,7 +227,7 @@ return [
         | Drivers: memory|illuminate|batch
         |
         */
-        'driver'     => 'memory',
+        'driver'     => env('EXCEL_CACHE_DRIVER', 'memory'),
 
         /*
         |--------------------------------------------------------------------------

@@ -9,36 +9,36 @@ return [
          * Smart search will enclose search keyword with wildcard string "%keyword%".
          * SQL: column LIKE "%keyword%"
          */
-        'smart'            => true,
+        'smart'            => env('DATATABLES_SEARCH_SMART', true),
 
         /*
          * Multi-term search will explode search keyword using spaces resulting into multiple term search.
          */
-        'multi_term'       => true,
+        'multi_term'       => env('DATATABLES_SEARCH_MULTI_TERM', true),
 
         /*
          * Case insensitive will search the keyword in lower case format.
          * SQL: LOWER(column) LIKE LOWER(keyword)
          */
-        'case_insensitive' => true,
+        'case_insensitive' => env('DATATABLES_SEARCH_CASE_INSENSITIVE', true),
 
         /*
          * Wild card will add "%" in between every characters of the keyword.
          * SQL: column LIKE "%k%e%y%w%o%r%d%"
          */
-        'use_wildcards'    => false,
+        'use_wildcards'    => env('DATATABLES_SEARCH_WILDCARDS', false),
 
         /*
          * Perform a search which starts with the given keyword.
          * SQL: column LIKE "keyword%"
          */
-        'starts_with'      => false,
+        'starts_with'      => env('DATATABLES_SEARCH_START_WITH', false),
     ],
 
     /*
      * DataTables internal index id response column name.
      */
-    'index_column'   => 'DT_RowIndex',
+    'index_column'   => env('DATATABLES_INDEX_COLUMN', 'DT_RowIndex'),
 
     /*
      * List of available builders for DataTables.
