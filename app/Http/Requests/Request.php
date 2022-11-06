@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
 class Request extends FormRequest
 {
@@ -62,21 +61,5 @@ class Request extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([]);
-    }
-    
-    /**
-     * Custom error response for validation.
-     *
-     * @return array
-     */
-    public function failedValidation(Validator $validator)
-    {
-        $toast = toastr();
-
-        foreach ($validator->messages()->all() as $message) {
-            $toast->error($message, 'Validation');
-        }
-
-        return $toast;
     }
 }

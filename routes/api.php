@@ -25,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::any('/', [Api\LandingController::class, 'index'])->name('landing.index');
-Route::resource('developer', Api\HomeController::class, ['only' => ['index']]);
+Route::get('/', [Api\LandingController::class, 'index'])->name('landing.index');
+Route::apiResource('developer', Api\HomeController::class, ['only' => ['index']]);
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +39,8 @@ Route::resource('developer', Api\HomeController::class, ['only' => ['index']]);
 */
 
 Route::middleware('guest')->group(function() {
-    Route::resource('login', Auth\LoginController::class, ['only' => ['store']]);
-    Route::resource('register', Auth\RegisterController::class, ['only' => ['store']]);
+    Route::apiResource('login', Auth\LoginController::class, ['only' => ['store']]);
+    Route::apiResource('register', Auth\RegisterController::class, ['only' => ['store']]);
 });
 
 /*
@@ -54,13 +54,13 @@ Route::middleware('guest')->group(function() {
 */
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::resource('logout', Auth\LogoutController::class, ['only' => ['store']]);
-    Route::resource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
-    Route::resource('book', Api\BookController::class, ['except' => ['create', 'edit']]);
-    Route::resource('author', Api\AuthorController::class, ['except' => ['create', 'edit']]);
-    Route::resource('student', Api\StudentController::class, ['except' => ['create', 'edit']]);
-    Route::resource('publisher', Api\PublisherController::class, ['except' => ['create', 'edit']]);
-    Route::resource('category', Api\BookCategoryController::class, ['except' => ['create', 'edit']]);
+    Route::apiResource('logout', Auth\LogoutController::class, ['only' => ['store']]);
+    Route::apiResource('audit', Api\AuditController::class, ['only' => ['index', 'show']]);
+    Route::apiResource('book', Api\BookController::class);
+    Route::apiResource('author', Api\AuthorController::class);
+    Route::apiResource('student', Api\StudentController::class);
+    Route::apiResource('publisher', Api\PublisherController::class);
+    Route::apiResource('category', Api\BookCategoryController::class);
 });
 
 /*

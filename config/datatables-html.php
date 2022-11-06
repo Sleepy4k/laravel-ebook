@@ -5,23 +5,23 @@ return [
      * DataTables JavaScript global namespace.
      */
 
-    'namespace' => 'LaravelDataTables',
+    'namespace' => env('ACTIVITY_LOGGER_ENABLED', 'LaravelDataTables'),
 
     /*
      * Default table attributes when generating the table.
      */
     'table' => [
-        'class' => 'table',
-        'id'    => 'dataTableBuilder',
+        'class' => env('DATATABLES_HTML_TABLE_CLASS', 'table'),
+        'id'    => env('DATATABLES_HTML_TABLE_ID', 'dataTableBuilder'),
     ],
 
     /*
      * Html builder script template.
      */
-    'script' => 'datatables::script',
+    'script' => env('DATATABLES_HTML_SCRIPT', 'datatables::script'),
 
     /*
      * Html builder script template for DataTables Editor integration.
      */
-    'editor' => 'datatables::editor',
+    'editor' => env('DATATABLES_HTML_EDITOR', 'datatables::editor'),
 ];

@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::any('/', [Web\LandingController::class, 'index'])->name('landing.index');
+Route::get('/', [Web\LandingController::class, 'index'])->name('landing.index');
 
 /*
 |--------------------------------------------------------------------------

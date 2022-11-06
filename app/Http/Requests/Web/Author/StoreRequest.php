@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Author;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\WebRequest;
 
-class StoreRequest extends Request
+class StoreRequest extends WebRequest
 {
     /**
      * Determine if the user is authorized to make this request.

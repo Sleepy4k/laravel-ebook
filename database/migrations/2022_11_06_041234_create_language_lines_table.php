@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('language_lines', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('group')->index();
+            $table->string('key');
+            $table->text('text');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::drop('language_lines');
     }
 };

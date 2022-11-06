@@ -16,7 +16,7 @@ class FallbackController extends ApiController
     public function index(FallbackService $service, Request $request)
     {
         try {
-            return $service->index($request);
+            return $service->index($request->url());
         } catch (\Throwable $th) {
             return $this->catchError($th);
         }

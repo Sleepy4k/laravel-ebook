@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Auth;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\WebRequest;
 
-class RegisterRequest extends Request
+class RegisterRequest extends WebRequest
 {
     /**
      * Get the validation rules that apply to the request.
