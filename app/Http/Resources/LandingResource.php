@@ -12,13 +12,16 @@ class LandingResource extends Resource
      */
     public function toArray($request)
     {
+        $app_url = config('app.url');
+        $uri = ($app_url == 'http://localhost') ? $app_url . ':8000/' : $app_url . '/';
+
         return [
-            'http_method' => $this->methods,
-            'uri' => $this->uri,
+            'uri' => $uri . $this->uri,
             'route' => $this->action['as'],
             'prefix' => $this->action['prefix'],
-            'middleware' => $this->action['middleware'],
-            'controller' => $this->action['controller']
+            'controller' => $this->action['controller'],
+            'http_method' => $this->methods,
+            'middleware' => $this->action['middleware']
         ];
     }
 }
