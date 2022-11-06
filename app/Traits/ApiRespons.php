@@ -71,10 +71,8 @@ trait ApiRespons
             static::$formatter['message'] = nullToEmptyString($message);
             static::$formatter['link'] = nullToEmptyString($link);
 
-            static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
-
             static::$formatter['meta']['version'] = static::$version;
-            static::$formatter['meta']['author'] = nullToEmptyString(config('app.author'));
+            static::$formatter['meta']['author'] = nullToEmptyString(config('meta.author'));
             static::$formatter['meta']['host'] = nullToEmptyString(config('app.url'));
             static::$formatter['meta']['type'] = static::$type;
             static::$formatter['meta']['date'] = date('d-m-Y H:i:s');
@@ -96,6 +94,8 @@ trait ApiRespons
                 static::$formatter['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : config('sanctum.expiration') * 60;
             }
 
+            static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
+            
             return response()->json(static::$formatter, $code);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', 'API | ' . $th->getMessage());
