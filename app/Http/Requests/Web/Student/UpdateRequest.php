@@ -3,10 +3,10 @@
 namespace App\Http\Requests\Web\Student;
 
 use App\Enums\GenderEnum;
-use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\WebRequest;
 
-class UpdateRequest extends Request
+class UpdateRequest extends WebRequest
 {
     /**
      * Determine if the user is authorized to make this request.
