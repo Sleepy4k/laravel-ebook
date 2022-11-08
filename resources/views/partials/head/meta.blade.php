@@ -8,7 +8,7 @@
 <meta name="description" content="{{ config('meta.description') }}">
 
 <meta property="og:site_name" content="{{ config('app.name') }}">
-<meta property="og:title" content="{{ basename(request()->path()) ? ucfirst(basename(request()->path())) : {{ config('app.name') }} }}">
+<meta property="og:title" content="{{ basename(request()->path()) ? ucfirst(basename(request()->path())) : config('app.name') }}">
 <meta property="og:description" content="{{ config('meta.description') }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
