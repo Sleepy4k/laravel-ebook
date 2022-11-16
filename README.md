@@ -18,11 +18,11 @@ Website application that used to handle E-Book data from api and web platform
 ### Installing
 Please check the official laravel installation guide for server requirements before you start. [Official Documentation](https://laravel.com/docs/master/installation)
 
-Alternative installation is possible without local dependencies relying on [Docker](#docker). 
+Alternative installation is possible without local dependencies relying on [Docker](https://www.docker.com/products/docker-desktop/). 
 
 Clone the repository
 
-    git clone git@github.com:sleepy4k/laravel-ebook.git
+    git clone https://github.com/Sleepy4k/laravel-ebook.git
 
 Switch to the repo folder
 
@@ -42,7 +42,7 @@ Generate a new application key
 
 Run the database migrations (**Set the database connection in .env before migrating**)
 
-    php artisan migrate
+    php artisan migrate:fresh --seed
 
 Start the local development server
 
@@ -52,13 +52,13 @@ You can now access the server at http://localhost:8000
 
 **TL;DR command list**
 
-    git clone git@github.com:sleepy4k/laravel-ebook.git
+    git clone https://github.com/Sleepy4k/laravel-ebook.git
     cd laravel-ebook
     composer install
     cp .env.example .env
     php artisan key:generate
     
-**Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
+**Make sure you set the correct database connection information before running the migrations**
 
     php artisan migrate:fresh --seed
     php artisan serve
@@ -74,13 +74,20 @@ Please create issue for detail information
 
 Contributors names and contact info
 
-[@benjamin4kk](https://instagram.com/benjamin4kk)
+[@benjamin4kk](https://github.com/Sleepy4k)
 
 ## Version History
 
-* 1.0-beta
+* 1.4.8-beta
+    * Various bug fixes and optimizations
+    * Change some method
+    * Slicing each function
+* 1.1.2-beta
+    * Various bug fixes and optimizations
+    * Finish some base feature using laravel main function
+* 1.0.0-beta
     * Various bug fixes and optimizations
     * Add web interface with simple authenticate system
-* 1.0-alpha
-    * Initial Release
+* 1.0.0-alpha
+    * Initial release
     * Add plain api
